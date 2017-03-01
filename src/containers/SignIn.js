@@ -25,7 +25,7 @@ import CustomTextInput from 'components/CustomTextInput/CustomTextInput';
 import applicationStyles from 'config/applicationStyle';
 import Colors from 'config/colors';
 
-class SignIn extends Component {
+export class SignIn extends Component {
   constructor(props) {
     super(props);
     this.state = {

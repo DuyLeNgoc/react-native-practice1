@@ -33,7 +33,7 @@ function loginRequestFailed(error) {
 //=============================//
 //      Reducer
 //=============================//
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
 	error: '',
 	loading: false
 };
