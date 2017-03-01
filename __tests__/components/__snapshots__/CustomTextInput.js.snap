@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "borderBottomColor": "#CCC",
+      "borderBottomWidth": 0.5,
+      "flexDirection": "row",
+      "height": 60,
+      "justifyContent": "center",
+      "paddingLeft": undefined,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "marginLeft": 20,
+        "padding": 10,
+      }
+    }
+  >
+    <Image
+      source={1}
+      style={
+        Object {
+          "height": 20,
+          "resizeMode": "contain",
+          "width": 20,
+        }
+      }
+    />
+  </View>
+  <TextInput
+    autoCapitalize="none"
+    imageIcon={1}
+    keyboardType="email-address"
+    onChangeText={[Function]}
+    placeholder="UserName"
+    placeholderTextColor="#d7d7d7"
+    style={
+      Object {
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "white",
+        "flex": 1,
+        "paddingHorizontal": 10,
+      }
+    }
+    underlineColorAndroid="rgba(0, 0, 0, 0)"
+  />
+</View>
+`;
