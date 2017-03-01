@@ -3,27 +3,27 @@ import AuthenticationService from 'network/AuthenticationService';
 //=============================//
 //      Action Types
 //=============================//
-const REQUEST = 'Request';
-const SUCCESS = 'Success';
-const FAILED  = 'Failed';
+export const REQUEST = 'Request';
+export const SUCCESS = 'Success';
+export const FAILED  = 'Failed';
 
 //=============================//
 //      Action Creators
 //=============================//
-function loginRequest() {
+export function loginRequest() {
 	return {
 		type: REQUEST
 	};
 }
 
-function loginRequestSuccess(json) {
+export function loginRequestSuccess(json) {
 	return {
 		type: SUCCESS,
 		payload: json
 	};
 }
 
-function loginRequestFailed(error) {
+export function loginRequestFailed(error) {
 	return {
 		type: FAILED,
 		error: error.message

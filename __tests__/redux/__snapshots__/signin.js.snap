@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignIn Action Creators  creates a REQUEST action 1`] = `
+Object {
+  "type": "Request",
+}
+`;
+
+exports[`SignIn Action Creators  creates a REQUEST action 2`] = `
+Object {
+  "error": "testing failed",
+  "type": "Failed",
+}
+`;
+
+exports[`SignIn Action Creators  creates a SUCCESS action 1`] = `
+Object {
+  "payload": Object {
+    "birthday": "1986-01-20",
+    "email": "test@gmail.com",
+    "full_name": "test",
+    "token": "abcxyzwendsjkfjdsklfjkds",
+    "trainee_id": 1,
+  },
+  "type": "Success",
+}
+`;
