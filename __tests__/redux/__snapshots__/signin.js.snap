@@ -1,15 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SignIn Action Creators  creates a REQUEST action 1`] = `
-Object {
-  "type": "Request",
-}
-`;
-
-exports[`SignIn Action Creators  creates a REQUEST action 2`] = `
+exports[`SignIn Action Creators  creates a FAILED action 1`] = `
 Object {
   "error": "testing failed",
   "type": "Failed",
+}
+`;
+
+exports[`SignIn Action Creators  creates a REQUEST action 1`] = `
+Object {
+  "type": "Request",
 }
 `;
 
