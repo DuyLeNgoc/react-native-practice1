@@ -26,5 +26,6 @@ const reducers = {
   errorMessage,
   signInReducer
 }
+
 const rootReducer = combineReducers(reducers)
 export default rootReducer;

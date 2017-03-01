@@ -9,34 +9,41 @@ export default class AuthenticationService {
 
   static signup(userInfo) {
 		const url = `${BASE_URL}trainees/register`;
-    return AuthenticationService.postData(url, userInfo);
+    return AuthenticationService.postData(url, null, userInfo);
   }
 
-	static postData(url, body) {
+	static postData(url, headers, body) {
 		let defaulHeaders = new Headers();
 		defaulHeaders.append('Content-Type', 'application/json');
 		defaulHeaders.append('charset', 'utf-8');
+    for (let key in headers) {
+      if (headers.hasOwnProperty(key)) {
+        defaulHeaders.append(key, headers[key]);
+      }
+    }
 
-		var myInit = {
+		let myInit = {
 			method: 'POST',
-			headers: defaulHeaders,
-			body: body
+			headers: defaulHeaders
 		};
+    if (body) {
+      myInit['body'] = JSON.stringify(body);
+    }
 		let request = new Request(url);
 		return fetch(request, myInit)
       .then(response => {
         if(response.ok) {
-          return response;
+          return response.json();
         }
         let errorMessage = 'Network response was not ok.'
-        if(response.json().hasOwnProperty('message')) {
-          errorMessage = response['message'];
-        }
         throw new Error(errorMessage);
       })
-      .catch(error => {
-        console.log('[NetWork Service]: There has been a problem with your fetch operation: ' + error.message);
-        return error;
-    });
+      .then(jsonData => {
+        if(jsonData.hasOwnProperty('error')) {
+          throw new Error(jsonData['error']);
+        } else {
+          return jsonData;
+        }
+      });
 	}
 }

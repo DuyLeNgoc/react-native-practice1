@@ -5,26 +5,20 @@ import {
 	compose
 } from 'redux';
 import thunk from 'redux-thunk';
-import {
-	composeWithDevTools
-} from 'remote-redux-devtools';
+import devTools, { composeWithDevTools } from 'remote-redux-devtools';
 import reducer from 'config/rootReducer';
 
 let store;
  if (__DEV__) {
-	const composeEnhancers = composeWithDevTools({
-		 realtime: true,
-		 name: Platform.OS,
-		 hostname: 'localhost',
-		 port: 8000
-	 });
-
-	 store = createStore(
-		reducer,
-		composeEnhancers(
-		 applyMiddleware(thunk)
-		)
-	);
+	 const enhancer = compose(
+     applyMiddleware(thunk),
+     devTools({
+       name: Platform.OS,
+       hostname: 'localhost',
+       port: 5678
+     })
+   );
+	 store = createStore(reducer, {}, enhancer);
 } else {
 	store = createStore(
 	 reducer,
@@ -33,6 +27,5 @@ let store;
 	 )
 	);
 }
-
 
 export default store;

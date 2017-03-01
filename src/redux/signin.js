@@ -68,23 +68,12 @@ export function signInReducer(state = INITIAL_STATE, action) {
 //=============================//
 //4: Load Data
 //=============================//
-const userInfo = {
-	trainee_id: 1,
-	full_name: 'test',
-	email: 'test@gmail.com',
-	birthday: '1986-01-20',
-	token: 'abcxyzwendsjkfjdsklfjkds'
-};
-
 export function login(userCredentials) {
   return (dispatch, getState) => {
     dispatch(loginRequest());
     return AuthenticationService.signin(userCredentials)
-    .then(response => {
-      return response.json();
-    })
-    .then(jsonTask => {
-        dispatch(loginRequestSuccess(jsonTask));
+    .then(json => {
+        dispatch(loginRequestSuccess(json));
     })
     .catch(error => {
       console.log('There has been a problem with your fetch operation: ' + error.message);

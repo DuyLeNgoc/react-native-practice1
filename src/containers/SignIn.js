@@ -128,7 +128,7 @@ function mapStateToProps(state) {
   return {
     error: state.signInReducer.error,
     loading: state.signInReducer.loading,
-    user: state.signInReducer.userlogin
+    user: state.signInReducer.user
   }
 }
 
@@ -141,9 +141,7 @@ function mapDispatchToProps(dispatch) {
 
 export default connect(
   mapStateToProps,
-  {
-    login
-  }
+  mapDispatchToProps
 )(SignIn);
 
 var styles = StyleSheet.create({
