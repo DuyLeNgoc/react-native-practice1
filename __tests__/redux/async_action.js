@@ -1,8 +1,9 @@
 import 'react-native';
-import configureMockStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
-import nock from 'nock'
-import expect from 'expect'
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+// import expect from 'expect';
+import fetchMock from 'fetch-mock';
+import fetchPonyfill from 'fetch-ponyfill';
 
 import {
 	INITIAL_STATE,
@@ -27,23 +28,22 @@ const MOCK_USERINFO = {
 const middlewares = [ thunk ]
 const mockStore = configureMockStore(middlewares)
 
-describe('async actions', () => {
-  afterEach(() => {
-    nock.cleanAll()
-  })
+describe('async actions with jest-mock', () => {
+	beforeEach(() => {
+		fetchMock.reset()
+	});
+
+	afterEach(() => {
+		// Unmock.restore fetch() to its native implementation
+		fetchMock.restore();
+	});
 
   it('creates SUCCESS when call signin has been done', () => {
-		var scope = nock('http://fixiesvn.azurewebsites.net/api', {
-						      reqheaders: {
-										email: 'test@gmail.com',
-	                  password: '123456'
-						      }
-						    })
-                .post('/trainees/login')
-                .reply(200, { body: MOCK_USERINFO});
+		fetchMock.setImplementations(fetchPonyfill);
+		fetchMock.post('*', {body: MOCK_USERINFO});
     const expectedActions = [
       { type: REQUEST },
-      { type: SUCCESS, body: MOCK_USERINFO }
+      { type: SUCCESS, payload: MOCK_USERINFO }
     ]
     const store = mockStore({ signInReducer: INITIAL_STATE })
 
@@ -51,5 +51,5 @@ describe('async actions', () => {
       .then(() => {
         expect(store.getActions()).toEqual(expectedActions)
       })
-  })
-})
+  });
+});

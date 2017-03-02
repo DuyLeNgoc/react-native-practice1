@@ -13,12 +13,11 @@ export default class AuthenticationService {
   }
 
 	static postData(url, headers, body) {
-		let defaulHeaders = new Headers();
-		defaulHeaders.append('Content-Type', 'application/json');
-		defaulHeaders.append('charset', 'utf-8');
+		let defaulHeaders = {'Content-Type': 'application/json',
+		'charset': 'utf-8'};
     for (let key in headers) {
       if (headers.hasOwnProperty(key)) {
-        defaulHeaders.append(key, headers[key]);
+        defaulHeaders[key] = headers[key];
       }
     }
 
@@ -29,8 +28,7 @@ export default class AuthenticationService {
     if (body) {
       myInit['body'] = JSON.stringify(body);
     }
-		let request = new Request(url);
-		return fetch(request, myInit)
+		return fetch(url, myInit)
       .then(response => {
         if(response.ok) {
           return response.json();
