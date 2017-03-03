@@ -24,13 +24,14 @@ const MOCK_USERINFO = {
 	birthday: '1986-01-20',
 	token: 'abcxyzwendsjkfjdsklfjkds'
 };
+const MOCK_ERROR = {message: 'testing failed'}
 
 const middlewares = [ thunk ]
 const mockStore = configureMockStore(middlewares)
 
 describe('async actions with jest-mock', () => {
 	beforeEach(() => {
-		fetchMock.reset()
+		fetchMock.reset();
 	});
 
 	afterEach(() => {
@@ -50,6 +51,23 @@ describe('async actions with jest-mock', () => {
     return store.dispatch(login({}))
       .then(() => {
         expect(store.getActions()).toEqual(expectedActions)
+      })
+  });
+
+	it('creates FAILED when call signin has been done', () => {
+		// fetchMock.setImplementations(fetchPonyfill);
+		fetchMock.post('*', {body: {error: MOCK_ERROR.message}});
+		const expectedActions = [
+      { type: REQUEST },
+      { type: FAILED, error: MOCK_ERROR.message }
+    ];
+    const store = mockStore({ signInReducer: INITIAL_STATE })
+
+    return store.dispatch(login({}))
+      .then(() => {
+				const receivedActions = store.getActions();
+	      expect(receivedActions.length).toBe(2);
+				expect(receivedActions).toEqual(expectedActions)
       })
   });
 });

@@ -1,6 +1,7 @@
 import 'react-native';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
+const { Response } = require('fetch-ponyfill')(Response);
 
 import {
 	INITIAL_STATE,
@@ -18,14 +19,16 @@ const MOCK_USERINFO = {
 	birthday: '1986-01-20',
 	token: 'abcxyzwendsjkfjdsklfjkds'
 };
+const MOCK_ERROR = {message: 'testing failed'}
 
 const middlewares = [ thunk ];
 const mockStore = configureMockStore(middlewares);
 const mockResponse = (status, response) => {
-	return {
-		ok: status,
-		body: response
-	};
+	return Response(response,
+	{
+		ok: true,
+		status: status
+	});
 };
 
 describe('async actions with jest', () => {
@@ -46,8 +49,5 @@ describe('async actions with jest', () => {
 	      expect(receivedActions.length).toBe(2);
 				expect(receivedActions).toEqual(expectedActions)
 	    });
-
-  	store.dispatch(login({})); // Different id
-		expect(window.fetch).toBeCalled();
 	});
 });
