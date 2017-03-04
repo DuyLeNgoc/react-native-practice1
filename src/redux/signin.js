@@ -1,4 +1,11 @@
 import AuthenticationService from 'network/AuthenticationService';
+import {
+	showLoading,
+	hideLoading,
+	showError,
+	hideError,
+	resetInput
+} from 'redux/sharing';
 
 //=============================//
 //      Action Types
@@ -60,6 +67,8 @@ export function signInReducer(state = INITIAL_STATE, action) {
 				loading: false,
 				error: action.error
 			};
+		default:
+			return state;
   }
 };
 
@@ -68,14 +77,17 @@ export function signInReducer(state = INITIAL_STATE, action) {
 //=============================//
 export function login(userCredentials) {
   return (dispatch, getState) => {
-    dispatch(loginRequest());
+    // dispatch(loginRequest());
+		dispatch(showLoading());
     return AuthenticationService.signin(userCredentials)
     .then(json => {
         dispatch(loginRequestSuccess(json));
+				dispatch(hideLoading());
     })
     .catch(error => {
       console.log('There has been a problem with your fetch operation: ' + error.message);
       dispatch(loginRequestFailed(error))
+			dispatch(hideLoading());
     });
   };
 }

@@ -6,16 +6,21 @@ import fetchMock from 'fetch-mock';
 import fetchPonyfill from 'fetch-ponyfill';
 
 import {
-	INITIAL_STATE,
+	INITIAL_STATE as initialSignInState,
 	signInReducer,
 	loginRequest,
 	loginRequestSuccess,
 	loginRequestFailed,
-	REQUEST,
 	SUCCESS,
 	FAILED,
 	login
 } from 'redux/signin';
+
+import {
+	INITIAL_STATE as initialSharedState,
+	SHOW_LOADING,
+	HIDE_LOADING
+} from 'redux/sharing';
 
 const MOCK_USERINFO = {
 	trainee_id: 1,
@@ -43,14 +48,19 @@ describe('async actions with jest-mock', () => {
 		fetchMock.setImplementations(fetchPonyfill);
 		fetchMock.post('*', {body: MOCK_USERINFO});
     const expectedActions = [
-      { type: REQUEST },
-      { type: SUCCESS, payload: MOCK_USERINFO }
+      { type: SHOW_LOADING, loading: true },
+      { type: SUCCESS, payload: MOCK_USERINFO },
+			{ type: HIDE_LOADING, loading: false }
     ]
-    const store = mockStore({ signInReducer: INITIAL_STATE })
+    const store = mockStore({
+			signInReducer: initialSignInState,
+			sharedData: initialSharedState });
 
     return store.dispatch(login({}))
       .then(() => {
-        expect(store.getActions()).toEqual(expectedActions)
+				const receivedActions = store.getActions();
+	      expect(receivedActions.length).toBe(3);
+				expect(receivedActions).toEqual(expectedActions)
       })
   });
 
@@ -58,15 +68,18 @@ describe('async actions with jest-mock', () => {
 		// fetchMock.setImplementations(fetchPonyfill);
 		fetchMock.post('*', {body: {error: MOCK_ERROR.message}});
 		const expectedActions = [
-      { type: REQUEST },
-      { type: FAILED, error: MOCK_ERROR.message }
+      { type: SHOW_LOADING, loading: true },
+      { type: FAILED, error: MOCK_ERROR.message },
+			{ type: HIDE_LOADING, loading: false }
     ];
-    const store = mockStore({ signInReducer: INITIAL_STATE })
+		const store = mockStore({
+			signInReducer: initialSignInState,
+			sharedData: initialSharedState });
 
     return store.dispatch(login({}))
       .then(() => {
 				const receivedActions = store.getActions();
-	      expect(receivedActions.length).toBe(2);
+	      expect(receivedActions.length).toBe(3);
 				expect(receivedActions).toEqual(expectedActions)
       })
   });

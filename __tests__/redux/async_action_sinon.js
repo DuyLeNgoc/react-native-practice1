@@ -3,12 +3,21 @@ import thunk from 'redux-thunk';
 import sinon from 'sinon';
 
 import {
-	INITIAL_STATE,
-	REQUEST,
+	INITIAL_STATE as initialSignInState,
+	signInReducer,
+	loginRequest,
+	loginRequestSuccess,
+	loginRequestFailed,
 	SUCCESS,
 	FAILED,
 	login
 } from 'redux/signin';
+
+import {
+	INITIAL_STATE as initialSharedState,
+	SHOW_LOADING,
+	HIDE_LOADING
+} from 'redux/sharing';
 
 import AuthenticationService from 'network/AuthenticationService';
 
@@ -33,40 +42,46 @@ describe('SignIn Action', () => {
       });
 
 		const expectedActions = [
-      { type: REQUEST },
-      { type: SUCCESS, payload: MOCK_USERINFO }
+      { type: SHOW_LOADING, loading: true },
+      { type: SUCCESS, payload: MOCK_USERINFO },
+			{ type: HIDE_LOADING, loading: false }
     ];
-    const store = mockStore({ signInReducer: INITIAL_STATE });
+		const store = mockStore({
+			signInReducer: initialSignInState,
+			sharedData: initialSharedState });
 
     return store.dispatch(login({}))
 		.then(() => {
 				const receivedActions = store.getActions();
         serviceCall.restore();
         sinon.assert.calledOnce(serviceCall);
-	      expect(receivedActions.length).toBe(2);
+	      expect(receivedActions.length).toBe(3);
 				expect(receivedActions).toEqual(expectedActions)
     })
   });
 
 	it('API call for signin Failed', () => {
-    const serviceCall = sinon.stub(AuthenticationService, 'signin',function(){
+    const serviceCall = sinon.stub(AuthenticationService, 'signin', function(){
       return new Promise(function(resolve, reject) {
           reject(MOCK_ERROR);
         });
       });
 
 		const expectedActions = [
-      { type: REQUEST },
-      { type: FAILED, error: MOCK_ERROR.message }
-    ];
-    const store = mockStore({ signInReducer: INITIAL_STATE });
+			{ type: SHOW_LOADING, loading: true },
+			{ type: FAILED, error: MOCK_ERROR.message },
+			{ type: HIDE_LOADING, loading: false }
+		];
+		const store = mockStore({
+			signInReducer: initialSignInState,
+			sharedData: initialSharedState });
 
     return store.dispatch(login({}))
 		.then(() => {
 				const receivedActions = store.getActions();
         serviceCall.restore();
         sinon.assert.calledOnce(serviceCall);
-	      expect(receivedActions.length).toBe(2);
+	      expect(receivedActions.length).toBe(3);
 				expect(receivedActions).toEqual(expectedActions)
     })
   });

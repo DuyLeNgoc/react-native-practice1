@@ -32,7 +32,6 @@ export class SignIn extends Component {
       username: '',
       password: ''
     };
-
     this.handleSignIn = this.handleSignIn.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
   }
@@ -127,7 +126,7 @@ SignIn.propTypes = {
 function mapStateToProps(state) {
   return {
     error: state.signInReducer.error,
-    loading: state.signInReducer.loading,
+    loading: state.sharedData.loading,
     user: state.signInReducer.user
   }
 }
