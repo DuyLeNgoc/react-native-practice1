@@ -22,8 +22,10 @@ import { connect } from 'react-redux';
 import { login } from 'redux/signin';
 import CircleImageView from 'components/CircleImageView/CircleImageView';
 import CustomTextInput from 'components/CustomTextInput/CustomTextInput';
+
 import applicationStyles from 'config/applicationStyle';
 import Colors from 'config/colors';
+import images from 'config/images';
 
 export class SignIn extends Component {
   constructor(props) {
@@ -57,12 +59,14 @@ export class SignIn extends Component {
         );
     }
     return (
-      <TouchableOpacity activeOpacity={.5} onPress={this.handleSignIn}>
-      <View style={styles.signinButton}>
-        <Text style={styles.signinText}>Sign In</Text>
-      </View>
+      <TouchableOpacity
+        activeOpacity={.5}
+        onPress={this.handleSignIn}>
+        <View style={styles.signinButton}>
+          <Text style={styles.signinText}>Sign In</Text>
+        </View>
       </TouchableOpacity>
-      );
+    );
   }
 
   render() {
@@ -72,11 +76,11 @@ export class SignIn extends Component {
     return (
        <Image
           style={applicationStyles.splashScreen}
-          source={require('assets/images/bg_signin.png')}>
+          source={images.background.signin}>
           <View style={applicationStyles.halfHeight}>
             <CircleImageView
               height={120}
-              imagelink={require('assets/images/check_red.png')}/>
+              imagelink={images.icons.redChecked}/>
           </View>
           <View style={applicationStyles.quarterHeight}>
             <CustomTextInput
@@ -84,13 +88,13 @@ export class SignIn extends Component {
               onChangeText={(text) => this.setState({username: text})}
               keyboardType={'email-address'}
               placeholder={'UserName'}
-              imageIcon={require('assets/images/user_name.png')} />
+              imageIcon={images.icons.userName} />
             <CustomTextInput
               onChangeText={(text) => this.setState({password: text})}
               autoCapitalize={'none'}
               secureTextEntry={true}
               placeholder={'Password'}
-              imageIcon={require('assets/images/password.png')} />
+              imageIcon={images.icons.password} />
             <TouchableOpacity
               activeOpacity={.5}>
                 <Text style={styles.forgotPasswordText}>
@@ -106,7 +110,9 @@ export class SignIn extends Component {
             <View style={styles.signupWrap}>
               <Text style={styles.accountText}>Don't have an account?</Text>
               <TouchableOpacity activeOpacity={.5} onPress={this.handleSignUp}>
-                <Text style={styles.signupLinkText}>Sign Up</Text>
+                <Text style={styles.signupLinkText}>
+                Sign Up
+                </Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -126,7 +132,7 @@ SignIn.propTypes = {
 function mapStateToProps(state) {
   return {
     error: state.signInReducer.error,
-    loading: state.sharedData.loading,
+    loading: state.loadingInfo.loading,
     user: state.signInReducer.user
   }
 }

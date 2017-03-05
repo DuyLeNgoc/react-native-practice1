@@ -11,6 +11,13 @@ const ApplicationStyles = {
     width: null,
     height: null
   },
+  titleStyle: {
+    color: Colors.white
+  },
+  navigationBarStyle: {
+    backgroundColor: Colors.transparent,
+    borderBottomColor: Colors.transparent
+  },
   button: {
     backgroundColor: Colors.buttonBackground,
     borderColor: Colors.buttonBackground,

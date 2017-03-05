@@ -13,13 +13,14 @@ import {
 } from 'react-native';
 
 import applicationStyles from 'config/applicationStyle';
+import images from 'config/images';
 
 export default class SignUp extends Component {
   render() {
     return (
       <Image
          style={applicationStyles.splashScreen}
-         source={require('assets/images/bg_signup.png')}>
+         source={images.background.signup}>
       <View style={styles.container}>
         <Text>I'm the SignUp screen</Text>
       </View>

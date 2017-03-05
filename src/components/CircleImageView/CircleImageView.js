@@ -11,7 +11,8 @@ import {
 export default class CircleImageView extends Component {
   render() {
     return (
-      <View style={[styles.container, {width: this.props.height, height: this.props.height, borderRadius: this.props.height/2}]}>
+      <View
+        style={[styles.container, {width: this.props.height, height: this.props.height, borderRadius: this.props.height/2}]}>
         <Image
             style={styles.icon}
             source={this.props.imagelink}

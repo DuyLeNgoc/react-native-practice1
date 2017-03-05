@@ -5,7 +5,7 @@ import {
 	showError,
 	hideError,
 	resetInput
-} from 'redux/sharing';
+} from 'redux/sharedData';
 
 //=============================//
 //      Action Types

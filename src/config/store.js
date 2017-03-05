@@ -6,6 +6,7 @@ import {
 } from 'redux';
 import thunk from 'redux-thunk';
 import devTools, { composeWithDevTools } from 'remote-redux-devtools';
+
 import reducer from 'config/rootReducer';
 
 let store;
