@@ -17,6 +17,7 @@ const Metrics = {
   screenWidth: width < height ? width : height,
   screenHeight: width < height ? height : width,
   navBarHeight: (Platform.OS === 'ios') ? 64 : 54,
+  titleBarHeight: (Platform.OS === 'ios') ? 20 : 24,
   //Button specific contants
   inputFieldHeight: 60,
   buttonHeight: 40,

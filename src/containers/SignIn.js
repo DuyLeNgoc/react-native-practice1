@@ -20,12 +20,13 @@ import {
 import { connect } from 'react-redux';
 
 import { login } from 'redux/signin';
-import CircleImageView from 'components/CircleImageView/CircleImageView';
-import CustomTextInput from 'components/CustomTextInput/CustomTextInput';
-
 import applicationStyles from 'config/applicationStyle';
 import Colors from 'config/colors';
 import images from 'config/images';
+
+import AppBackground from 'components/shared/AppBackground';
+import CircleImageView from 'components/CircleImageView/CircleImageView';
+import CustomTextInput from 'components/CustomTextInput/CustomTextInput';
 
 export class SignIn extends Component {
   constructor(props) {
@@ -74,49 +75,47 @@ export class SignIn extends Component {
       Alert.alert('Login Success', `Welcome ${this.props.user.full_name}`);
     }
     return (
-       <Image
-          style={applicationStyles.splashScreen}
-          source={images.background.signin}>
-          <View style={applicationStyles.halfHeight}>
-            <CircleImageView
-              height={120}
-              imagelink={images.icons.redChecked}/>
-          </View>
-          <View style={applicationStyles.quarterHeight}>
-            <CustomTextInput
-              autoCapitalize={'none'}
-              onChangeText={(text) => this.setState({username: text})}
-              keyboardType={'email-address'}
-              placeholder={'UserName'}
-              imageIcon={images.icons.userName} />
-            <CustomTextInput
-              onChangeText={(text) => this.setState({password: text})}
-              autoCapitalize={'none'}
-              secureTextEntry={true}
-              placeholder={'Password'}
-              imageIcon={images.icons.password} />
-            <TouchableOpacity
-              activeOpacity={.5}>
-                <Text style={styles.forgotPasswordText}>
-                  Forgot Password?
-                </Text>
+      <AppBackground imageLink={images.background.signin}>
+        <View style={applicationStyles.halfHeight}>
+          <CircleImageView
+            height={120}
+            imagelink={images.icons.redChecked}/>
+        </View>
+        <View style={applicationStyles.quarterHeight}>
+          <CustomTextInput
+            autoCapitalize={'none'}
+            onChangeText={(text) => this.setState({username: text})}
+            keyboardType={'email-address'}
+            placeholder={'UserName'}
+            imageIcon={images.icons.userName} />
+          <CustomTextInput
+            onChangeText={(text) => this.setState({password: text})}
+            autoCapitalize={'none'}
+            secureTextEntry={true}
+            placeholder={'Password'}
+            imageIcon={images.icons.password} />
+          <TouchableOpacity
+            activeOpacity={.5}>
+              <Text style={styles.forgotPasswordText}>
+                Forgot Password?
+              </Text>
+          </TouchableOpacity>
+        </View>
+        <View style={[applicationStyles.quarterHeight, {justifyContent: 'flex-end'}]}>
+          <Text style={styles.errorText}>
+            {this.props.error}
+          </Text>
+          {this.checkToRenderLoading()}
+          <View style={styles.signupWrap}>
+            <Text style={styles.accountText}>Don't have an account?</Text>
+            <TouchableOpacity activeOpacity={.5} onPress={this.handleSignUp}>
+              <Text style={styles.signupLinkText}>
+              Sign Up
+              </Text>
             </TouchableOpacity>
           </View>
-          <View style={[applicationStyles.quarterHeight, {justifyContent: 'flex-end'}]}>
-            <Text style={styles.errorText}>
-              {this.props.error}
-            </Text>
-            {this.checkToRenderLoading()}
-            <View style={styles.signupWrap}>
-              <Text style={styles.accountText}>Don't have an account?</Text>
-              <TouchableOpacity activeOpacity={.5} onPress={this.handleSignUp}>
-                <Text style={styles.signupLinkText}>
-                Sign Up
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-      </Image>
+        </View>
+      </AppBackground>
     );
   }
 }

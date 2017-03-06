@@ -20,6 +20,7 @@ export default class Root extends Component {
           scenes={scenes}
           titleStyle={applicationStyles.titleStyle} backButtonImage={images.navigationIcons.back}
           navigationBarStyle={applicationStyles.navigationBarStyle}
+          drawerImage={images.navigationIcons.hamburger}
         />
     </Provider>
     );

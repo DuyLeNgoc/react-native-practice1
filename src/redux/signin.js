@@ -1,3 +1,6 @@
+import { Alert } from 'react-native';
+import { Actions } from 'react-native-router-flux';
+
 import AuthenticationService from 'network/AuthenticationService';
 import {
 	showLoading,
@@ -90,4 +93,25 @@ export function login(userCredentials) {
 			dispatch(hideLoading());
     });
   };
+}
+
+export function logout() {
+  return (dispatch, getState) => {
+		dispatch(showLoading());
+	  return AuthenticationService.signout({'x-access-token': getState.userSession.token})
+		.then(json => {
+			dispatch(hideLoading);
+	    Actions.SignIn();
+	  })
+		.catch(error => {
+			dispatch(hideLoading);
+	    Alert.alert(
+	      'Log out'
+	      `Logout Failed: ${error.message}`,
+	      [
+	        {text: 'OK'},
+	      ]
+	    )
+	  });
+	};
 }

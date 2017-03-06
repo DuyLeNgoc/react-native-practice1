@@ -8,23 +8,21 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  StyleSheet,
-  Image
+  StyleSheet
 } from 'react-native';
 
 import applicationStyles from 'config/applicationStyle';
 import images from 'config/images';
+import AppBackground from 'components/shared/AppBackground';
 
 export default class SignUp extends Component {
   render() {
     return (
-      <Image
-         style={applicationStyles.splashScreen}
-         source={images.background.signup}>
-      <View style={styles.container}>
-        <Text>I'm the SignUp screen</Text>
-      </View>
-    </Image>
+      <AppBackground imageLink={images.background.signup}>
+        <View style={styles.container}>
+          <Text>I'm the SignUp screen</Text>
+        </View>
+      </AppBackground>
     );
   }
 }

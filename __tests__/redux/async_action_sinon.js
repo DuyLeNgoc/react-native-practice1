@@ -17,7 +17,7 @@ import {
 	INITIAL_STATE as initialSharedState,
 	SHOW_LOADING,
 	HIDE_LOADING
-} from 'redux/sharing';
+} from 'redux/sharedData';
 
 import AuthenticationService from 'network/AuthenticationService';
 

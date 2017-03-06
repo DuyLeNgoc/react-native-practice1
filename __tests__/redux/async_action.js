@@ -20,7 +20,7 @@ import {
 	INITIAL_STATE as initialSharedState,
 	SHOW_LOADING,
 	HIDE_LOADING
-} from 'redux/sharing';
+} from 'redux/sharedData';
 
 const MOCK_USERINFO = {
 	trainee_id: 1,

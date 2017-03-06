@@ -4,15 +4,20 @@ export default class AuthenticationService {
   //Return an promise
   static signin(userCredentials) {
 		const url = `${BASE_URL}trainees/login`;
-    return AuthenticationService.postData(url, userCredentials);
+    return AuthenticationService.requestData('POST', url, userCredentials);
   }
 
   static signup(userInfo) {
 		const url = `${BASE_URL}trainees/register`;
-    return AuthenticationService.postData(url, null, userInfo);
+    return AuthenticationService.requestData('POST', url, null, userInfo);
   }
 
-	static postData(url, headers, body) {
+  static signout(userCredentials) {
+    const url = `${BASE_URL}trainees/logout`;
+    return AuthenticationService.requestData('POST', url, userCredentials);
+  }
+
+	static requestData(method, url, headers, body) {
 		let defaulHeaders = {'Content-Type': 'application/json',
 		'charset': 'utf-8'};
     for (let key in headers) {
@@ -22,7 +27,7 @@ export default class AuthenticationService {
     }
 
 		let myInit = {
-			method: 'POST',
+			method: method,
 			headers: defaulHeaders
 		};
     if (body) {
