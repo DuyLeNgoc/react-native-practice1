@@ -6,6 +6,9 @@ import {
   Text,
   StyleSheet,
 } from 'react-native';
+import {
+	Actions
+} from 'react-native-router-flux';
 
 import AppBackground from 'components/shared/AppBackground';
 
@@ -19,6 +22,9 @@ export default class AccountSummary extends Component {
 			</AppBackground>
     );
   }
+	componentDidMount() {
+		UserService
+	}
 }
 
 const styles = StyleSheet.create({

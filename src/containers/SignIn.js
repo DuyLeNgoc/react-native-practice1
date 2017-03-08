@@ -11,7 +11,6 @@ import {
   Text,
   View,
   TouchableOpacity,
-  Alert,
   ActivityIndicator
 } from 'react-native';
 import {
@@ -71,9 +70,6 @@ export class SignIn extends Component {
   }
 
   render() {
-    if(this.props.user) {
-      Alert.alert('Login Success', `Welcome ${this.props.user.full_name}`);
-    }
     return (
       <AppBackground imageLink={images.background.signin}>
         <View style={applicationStyles.halfHeight}>
@@ -117,6 +113,12 @@ export class SignIn extends Component {
         </View>
       </AppBackground>
     );
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if(this.props.user) {
+      Actions.AccountSummary();
+    }
   }
 }
 

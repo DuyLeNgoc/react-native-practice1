@@ -19,7 +19,8 @@ import {
 import {
 	INITIAL_STATE as initialSharedState,
 	SHOW_LOADING,
-	HIDE_LOADING
+	HIDE_LOADING,
+	SAVE_USER_SESSION
 } from 'redux/sharedData';
 
 const MOCK_USERINFO = {
@@ -49,8 +50,9 @@ describe('async actions with jest-mock', () => {
 		fetchMock.post('*', {body: MOCK_USERINFO});
     const expectedActions = [
       { type: SHOW_LOADING, loading: true },
+			{ type: HIDE_LOADING, loading: false },
       { type: SUCCESS, payload: MOCK_USERINFO },
-			{ type: HIDE_LOADING, loading: false }
+			{ type: SAVE_USER_SESSION, user: MOCK_USERINFO }
     ]
     const store = mockStore({
 			signInReducer: initialSignInState,
@@ -59,7 +61,7 @@ describe('async actions with jest-mock', () => {
     return store.dispatch(login({}))
       .then(() => {
 				const receivedActions = store.getActions();
-	      expect(receivedActions.length).toBe(3);
+	      expect(receivedActions.length).toBe(4);
 				expect(receivedActions).toEqual(expectedActions)
       })
   });
@@ -69,8 +71,8 @@ describe('async actions with jest-mock', () => {
 		fetchMock.post('*', {body: {error: MOCK_ERROR.message}});
 		const expectedActions = [
       { type: SHOW_LOADING, loading: true },
-      { type: FAILED, error: MOCK_ERROR.message },
-			{ type: HIDE_LOADING, loading: false }
+			{ type: HIDE_LOADING, loading: false },
+      { type: FAILED, error: MOCK_ERROR.message }
     ];
 		const store = mockStore({
 			signInReducer: initialSignInState,

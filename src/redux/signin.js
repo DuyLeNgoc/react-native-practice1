@@ -7,7 +7,8 @@ import {
 	hideLoading,
 	showError,
 	hideError,
-	resetInput
+	resetInput,
+	saveUser
 } from 'redux/sharedData';
 
 //=============================//
@@ -84,13 +85,14 @@ export function login(userCredentials) {
 		dispatch(showLoading());
     return AuthenticationService.signin(userCredentials)
     .then(json => {
-        dispatch(loginRequestSuccess(json));
 				dispatch(hideLoading());
+        dispatch(loginRequestSuccess(json));
+				dispatch(saveUser(json));
     })
     .catch(error => {
+			dispatch(hideLoading());
       console.log('There has been a problem with your fetch operation: ' + error.message);
       dispatch(loginRequestFailed(error))
-			dispatch(hideLoading());
     });
   };
 }

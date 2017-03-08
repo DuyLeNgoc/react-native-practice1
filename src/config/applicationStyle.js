@@ -37,17 +37,17 @@ const ApplicationStyles = {
     width: Metrics.icons.small,
     resizeMode: 'contain'
   },
-  leftNavigationItem: {
+  navigationItemLeft: {
     marginLeft: Metrics.margin,
     marginTop: Metrics.margin
   },
-  rightNavigationItem: {
+  navigationItemRight: {
     marginRight: Metrics.margin,
     marginTop: Metrics.margin
   },
-  iconNavigationItem: {
+  navigationItemIcon: {
     height: Metrics.icons.medium,
-    width: Metrics.icons.small,
+    width: Metrics.icons.medium,
     resizeMode: 'contain'
   },
   halfHeight: {

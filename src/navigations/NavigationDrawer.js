@@ -4,10 +4,11 @@ import {
 	Actions,
 	DefaultRenderer
 } from 'react-native-router-flux';
+import { connect } from 'react-redux';
 
 import SideMenu from 'containers/SideMenu';
 
-export default class NavigationDrawer extends Component {
+class NavigationDrawer extends Component {
 	openDrawer = () => {
 		Actions.refresh({key: 'drawer', open: true});
 	}
@@ -19,14 +20,14 @@ export default class NavigationDrawer extends Component {
 	render(){
     const state = this.props.navigationState;
     const children = state.children;
-		const content = <SideMenu closeDrawer={this.closeDrawer}/>;
+		const content = <SideMenu closeDrawer={this.closeDrawer} {...this.props} />;
     return (
         <Drawer
             ref="navigation"
+						type="displace"
             open={state.open}
             onOpen={this.openDrawer}
             onClose={this.closeDrawer}
-            type="displace"
             content={content}
             tapToClose={true}
             openDrawerOffset={0.2}
@@ -40,3 +41,10 @@ export default class NavigationDrawer extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    user: state.userSession
+  }
+}
+export default connect(mapStateToProps)(NavigationDrawer);

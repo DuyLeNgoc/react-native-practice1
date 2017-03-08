@@ -16,7 +16,8 @@ import {
 import {
 	INITIAL_STATE as initialSharedState,
 	SHOW_LOADING,
-	HIDE_LOADING
+	HIDE_LOADING,
+	SAVE_USER_SESSION
 } from 'redux/sharedData';
 
 import AuthenticationService from 'network/AuthenticationService';
@@ -43,8 +44,9 @@ describe('SignIn Action', () => {
 
 		const expectedActions = [
       { type: SHOW_LOADING, loading: true },
+			{ type: HIDE_LOADING, loading: false },
       { type: SUCCESS, payload: MOCK_USERINFO },
-			{ type: HIDE_LOADING, loading: false }
+			{ type: SAVE_USER_SESSION, user: MOCK_USERINFO }
     ];
 		const store = mockStore({
 			signInReducer: initialSignInState,
@@ -55,7 +57,7 @@ describe('SignIn Action', () => {
 				const receivedActions = store.getActions();
         serviceCall.restore();
         sinon.assert.calledOnce(serviceCall);
-	      expect(receivedActions.length).toBe(3);
+	      expect(receivedActions.length).toBe(4);
 				expect(receivedActions).toEqual(expectedActions)
     })
   });
@@ -69,8 +71,8 @@ describe('SignIn Action', () => {
 
 		const expectedActions = [
 			{ type: SHOW_LOADING, loading: true },
-			{ type: FAILED, error: MOCK_ERROR.message },
-			{ type: HIDE_LOADING, loading: false }
+			{ type: HIDE_LOADING, loading: false },
+			{ type: FAILED, error: MOCK_ERROR.message }
 		];
 		const store = mockStore({
 			signInReducer: initialSignInState,
