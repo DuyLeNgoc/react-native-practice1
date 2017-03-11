@@ -21,20 +21,20 @@ export const FAILED  = 'Failed';
 //=============================//
 //      Action Creators
 //=============================//
-export function loginRequest() {
+export function signInRequest() {
 	return {
 		type: REQUEST
 	};
 }
 
-export function loginRequestSuccess(json) {
+export function signInRequestSuccess(json) {
 	return {
 		type: SUCCESS,
 		payload: json
 	};
 }
 
-export function loginRequestFailed(error) {
+export function signInRequestFailed(error) {
 	return {
 		type: FAILED,
 		error: error.message
@@ -79,25 +79,25 @@ export function signInReducer(state = INITIAL_STATE, action) {
 //=============================//
 //4: Load Data
 //=============================//
-export function login(userCredentials) {
+export function signIn(userCredentials) {
   return (dispatch, getState) => {
-    // dispatch(loginRequest());
+    // dispatch(signInRequest());
 		dispatch(showLoading());
     return AuthenticationService.signin(userCredentials)
     .then(json => {
 				dispatch(hideLoading());
-        dispatch(loginRequestSuccess(json));
+        dispatch(signInRequestSuccess(json));
 				dispatch(saveUser(json));
     })
     .catch(error => {
 			dispatch(hideLoading());
       console.log('There has been a problem with your fetch operation: ' + error.message);
-      dispatch(loginRequestFailed(error))
+      dispatch(signInRequestFailed(error))
     });
   };
 }
 
-export function logout() {
+export function signOut() {
   return (dispatch, getState) => {
 		dispatch(showLoading());
 	  return AuthenticationService.signout({'x-access-token': getState.userSession.token})

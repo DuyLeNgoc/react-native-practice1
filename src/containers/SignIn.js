@@ -18,7 +18,7 @@ import {
 } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 
-import { login } from 'redux/signin';
+import { signIn } from 'redux/signin';
 import applicationStyles from 'config/applicationStyle';
 import Colors from 'config/colors';
 import images from 'config/images';
@@ -31,7 +31,7 @@ export class SignIn extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
+      username: this.props.username,
       password: ''
     };
     this.handleSignIn = this.handleSignIn.bind(this);
@@ -39,7 +39,7 @@ export class SignIn extends Component {
   }
 
   handleSignIn() {
-    this.props.login({
+    this.props.signIn({
       email: this.state.username,
       password: this.state.password
     });
@@ -120,13 +120,29 @@ export class SignIn extends Component {
       Actions.AccountSummary();
     }
   }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.username) {
+      this.setState({username: nextProps.username})
+    }
+  }
+
 }
 
+// Specifies the default values for props:
+SignIn.defaultProps = {
+  username: '',
+  error: '',
+  loading: false,
+  user: null
+};
+
 SignIn.propTypes = {
-  login: PropTypes.func,
+  signIn: PropTypes.func,
   error: PropTypes.string,
   loading: PropTypes.bool,
-  user: PropTypes.object
+  user: PropTypes.object,
+  username: PropTypes.string
 };
 
 // Map Redux state to component props
@@ -141,7 +157,7 @@ function mapStateToProps(state) {
 // Map Redux actions to component props
 function mapDispatchToProps(dispatch) {
   return {
-    login: (userCredentials) => dispatch(login(userCredentials))
+    signIn: (userCredentials) => dispatch(signIn(userCredentials))
   }
 }
 

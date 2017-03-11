@@ -41,7 +41,6 @@ export default scenes = Actions.create(
           <Scene
             key="SignUp"
             component={SignUp}
-            title="Sign Up"
             hideNavBar={false}
             type={ActionConst.PUSH}
           />

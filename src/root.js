@@ -20,8 +20,8 @@ export default class Root extends Component {
           scenes={scenes}
           titleStyle={applicationStyles.titleStyle} backButtonImage={images.navigationIcons.back}
           navigationBarStyle={applicationStyles.navigationBarStyle}
-          leftButtonIconStyle={[applicationStyles.navigationItemIcon, applicationStyles.navigationItemLeft]}
-          rightButtonIconStyle={[applicationStyles.navigationItemIcon, applicationStyles.navigationItemRight]}
+          leftButtonIconStyle={applicationStyles.navigationItemIcon}
+          rightButtonIconStyle={applicationStyles.navigationItemIcon}
           drawerImage={images.navigationIcons.hamburger}
         />
     </Provider>

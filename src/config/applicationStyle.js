@@ -18,6 +18,12 @@ const ApplicationStyles = {
     backgroundColor: Colors.transparent,
     borderBottomColor: Colors.transparent
   },
+  navigationItemIcon: {
+    height: Metrics.icons.medium,
+    width: Metrics.icons.medium,
+    resizeMode: 'contain',
+    alignSelf: 'center'
+  },
   button: {
     backgroundColor: Colors.buttonBackground,
     borderColor: Colors.buttonBackground,
@@ -37,31 +43,17 @@ const ApplicationStyles = {
     width: Metrics.icons.small,
     resizeMode: 'contain'
   },
-  navigationItemLeft: {
-    marginLeft: Metrics.margin,
-    marginTop: Metrics.margin
-  },
-  navigationItemRight: {
-    marginRight: Metrics.margin,
-    marginTop: Metrics.margin
-  },
-  navigationItemIcon: {
-    height: Metrics.icons.medium,
-    width: Metrics.icons.medium,
-    resizeMode: 'contain'
-  },
   halfHeight: {
     flex: .5,
     alignItems: 'center',
     justifyContent: 'center'
   },
   quarterHeight: {
-    flex: .25,
+    flex: .25
   },
   threeQuarterHeight: {
     flex: .75,
-    alignItems: 'center',
-    justifyContent: 'center'
+    alignItems: 'stretch'
   }
 };
 

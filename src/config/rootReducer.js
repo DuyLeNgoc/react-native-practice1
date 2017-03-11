@@ -3,6 +3,7 @@
  * This class combines all the reducers into one
  */
 import { signInReducer } from 'redux/signin';
+import { signUpReducer } from 'redux/signup';
 import {
   errorMessage,
   userSession,
@@ -28,7 +29,7 @@ const RESET_ERROR_MESSAGE = 'Reset Error Message';
 // }
 
 const reducers = {
-  // errorMessage,
+  signUpReducer,
   signInReducer,
   errorMessage,
   userSession,

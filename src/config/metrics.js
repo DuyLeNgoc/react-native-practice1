@@ -6,6 +6,12 @@ import {
 const {width, height} = Dimensions.get('window');
 
 const Metrics = {
+  //Device specific contants
+  screenWidth: width < height ? width : height,
+  screenHeight: width < height ? height : width,
+  navBarHeight: (Platform.OS === 'ios') ? 64 : 54,
+  titleBarHeight: (Platform.OS === 'ios') ? 20 : 24,
+  //specific margins
   margin: 10,
   marginVertical: 10,
   marginHorizontal: 10,
@@ -13,11 +19,8 @@ const Metrics = {
   paddingHorizontal: 10,
   paddingVertical: 10,
   section: 25,
-  //Device specific contants
-  screenWidth: width < height ? width : height,
-  screenHeight: width < height ? height : width,
-  navBarHeight: (Platform.OS === 'ios') ? 64 : 54,
-  titleBarHeight: (Platform.OS === 'ios') ? 20 : 24,
+  marginNavigationBar: ((Platform.OS === 'ios') ? 64 : 54) + 10,
+  marginTitleBar: ((Platform.OS === 'ios') ? 20 : 24) + 10,
   //Button specific contants
   inputFieldHeight: 60,
   buttonHeight: 40,
