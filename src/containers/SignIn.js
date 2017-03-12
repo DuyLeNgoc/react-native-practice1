@@ -6,12 +6,13 @@
 
 import React, { Component, PropTypes } from 'react';
 import {
-  StyleSheet,
   Image,
   Text,
   View,
   TouchableOpacity,
-  ActivityIndicator
+  ActivityIndicator,
+  KeyboardAvoidingView,
+  StyleSheet
 } from 'react-native';
 import {
   Actions
@@ -77,7 +78,7 @@ export class SignIn extends Component {
             height={120}
             imagelink={images.icons.redChecked}/>
         </View>
-        <View style={applicationStyles.quarterHeight}>
+        <KeyboardAvoidingView behavior={'padding'} style={applicationStyles.quarterHeight}>
           <CustomTextInput
             autoCapitalize={'none'}
             onChangeText={(text) => this.setState({username: text})}
@@ -96,7 +97,7 @@ export class SignIn extends Component {
                 Forgot Password?
               </Text>
           </TouchableOpacity>
-        </View>
+        </KeyboardAvoidingView>
         <View style={[applicationStyles.quarterHeight, {justifyContent: 'flex-end'}]}>
           <Text style={styles.errorText}>
             {this.props.error}

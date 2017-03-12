@@ -11,6 +11,7 @@ import {
   ScrollView,
   TouchableOpacity,
   ActivityIndicator,
+  KeyboardAvoidingView,
   StyleSheet
 } from 'react-native';
 import { connect } from 'react-redux';
@@ -93,7 +94,7 @@ class SignUp extends Component {
             <Text style={styles.textTitle}>
               Sign Up
             </Text>
-            <View>
+            <KeyboardAvoidingView behavior={'padding'}>
               <CustomTextInput
                 height={60}
                 autoCapitalize={'none'}
@@ -118,7 +119,7 @@ class SignUp extends Component {
                 keyboardType={'numbers-and-punctuation'}
                 placeholder={'Birthday'}
                 imageIcon={images.icons.birthday} />
-            </View>
+            </KeyboardAvoidingView>
           </ScrollView>
         </View>
         <View style={[applicationStyles.quarterHeight, {justifyContent: 'flex-end'}]}>
