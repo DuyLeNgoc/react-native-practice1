@@ -10,10 +10,12 @@ import SignIn from 'containers/SignIn';
 import SignUp from 'containers/SignUp';
 import Profile from 'containers/Profile';
 import About from 'containers/About';
+import AccountDetail from 'containers/AccountDetail';
 import AccountSummary from 'containers/AccountSummary';
 import NavigationDrawer from 'navigations/NavigationDrawer';
-import { logout } from 'redux/signin';
+
 import images from 'config/images';
+import AuthenticationService from 'network/AuthenticationService';
 
 export const handleLogout = () => {
   Alert.alert(
@@ -21,9 +23,25 @@ export const handleLogout = () => {
         'Are you sure?',
         [
           {text: 'cancel', onPress: () => console.log('Cancel logout'), style: 'cancel'},
-          {text: 'ok', onPress: () => logout()},
+          {text: 'ok', onPress: () => signOut()},
         ]
       )
+}
+
+const signOut = () => {
+  return AuthenticationService.signout()
+	.then(json => {
+    Actions.SignIn();
+  })
+	.catch(error => {
+    Alert.alert(
+      'Log out'
+      `Logout Failed: ${error.message}`,
+      [
+        {text: 'OK'},
+      ]
+    )
+  });
 }
 
 export default scenes = Actions.create(
@@ -37,7 +55,8 @@ export default scenes = Actions.create(
             key="SignIn"
             component={SignIn}
             initial={true}
-            hideNavBar={false} />
+            hideNavBar={false}
+            type={ActionConst.RESET} />
           <Scene
             key="SignUp"
             component={SignUp}
@@ -59,12 +78,19 @@ export default scenes = Actions.create(
             type={ActionConst.REPLACE}
           />
           <Scene
+            initial={false}
             key='AccountSummary'
             component={AccountSummary}
             hideNavBar={false}
             type={ActionConst.RESET}
             onRight={handleLogout}
             rightButtonImage={images.navigationIcons.logout}
+          />
+          <Scene
+            key='AccountDetail'
+            component={AccountDetail}
+            hideNavBar={false}
+            type={ActionConst.PUSH}
           />
         </Scene>
       </Scene>

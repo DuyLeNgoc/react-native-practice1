@@ -1,6 +1,3 @@
-import { Alert } from 'react-native';
-import { Actions } from 'react-native-router-flux';
-
 import AuthenticationService from 'network/AuthenticationService';
 import {
 	showLoading,
@@ -14,19 +11,12 @@ import {
 //=============================//
 //      Action Types
 //=============================//
-export const REQUEST = 'Request';
-export const SUCCESS = 'Success';
-export const FAILED  = 'Failed';
+export const SUCCESS = 'SignInSuccess';
+export const FAILED  = 'SignInFailed';
 
 //=============================//
 //      Action Creators
 //=============================//
-export function signInRequest() {
-	return {
-		type: REQUEST
-	};
-}
-
 export function signInRequestSuccess(json) {
 	return {
 		type: SUCCESS,
@@ -51,12 +41,6 @@ export const INITIAL_STATE = {
 
 export function signInReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case REQUEST:
-			return {
-				...state,
-				loading: true,
-				error: ''
-			};
 		case SUCCESS:
 			return {
 				...state,
@@ -81,7 +65,6 @@ export function signInReducer(state = INITIAL_STATE, action) {
 //=============================//
 export function signIn(userCredentials) {
   return (dispatch, getState) => {
-    // dispatch(signInRequest());
 		dispatch(showLoading());
     return AuthenticationService.signin(userCredentials)
     .then(json => {
@@ -90,30 +73,9 @@ export function signIn(userCredentials) {
 				dispatch(saveUser(json));
     })
     .catch(error => {
-			dispatch(hideLoading());
       console.log('There has been a problem with your fetch operation: ' + error.message);
-      dispatch(signInRequestFailed(error))
+			dispatch(hideLoading());
+      dispatch(signInRequestFailed(error));
     });
   };
-}
-
-export function signOut() {
-  return (dispatch, getState) => {
-		dispatch(showLoading());
-	  return AuthenticationService.signout({'x-access-token': getState.userSession.token})
-		.then(json => {
-			dispatch(hideLoading);
-	    Actions.SignIn();
-	  })
-		.catch(error => {
-			dispatch(hideLoading);
-	    Alert.alert(
-	      'Log out'
-	      `Logout Failed: ${error.message}`,
-	      [
-	        {text: 'OK'},
-	      ]
-	    )
-	  });
-	};
 }

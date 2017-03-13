@@ -9,8 +9,8 @@ import {
 	INITIAL_STATE as initialSignInState,
 	signInReducer,
 	loginRequest,
-	loginRequestSuccess,
-	loginRequestFailed,
+	signInRequestSuccess,
+	signInRequestFailed,
 	SUCCESS,
 	FAILED,
 	login

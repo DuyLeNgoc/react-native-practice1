@@ -3,24 +3,25 @@ import {
 	hideLoading
 } from 'redux/sharedData';
 
-import AuthenticationService from 'network/AuthenticationService';
+import UserService from 'network/UserService';
 
 //=============================//
 //      Action Types
 //=============================//
-export const SUCCESS = 'SignUpSuccess';
-export const FAILED  = 'SignUpFailed';
+export const SUCCESS = 'AccountSummarySuccess';
+export const FAILED  = 'AccountSummaryFailed';
 
 //=============================//
 //      Action Creators
 //=============================//
-export function signUpRequestSuccess() {
+export function accountSummaryRequestSuccess(json) {
 	return {
-		type: SUCCESS
+		type: SUCCESS,
+		accountList: json
 	};
 }
 
-export function signUpRequestFailed(error) {
+export function accountSummaryRequestFailed(error) {
 	return {
 		type: FAILED,
 		error: error.message
@@ -32,22 +33,27 @@ export function signUpRequestFailed(error) {
 //=============================//
 export const INITIAL_STATE = {
 	error: '',
-	isSuccess: false
+	isSuccess: false,
+	accountList: []
 };
 
-export function signUpReducer(state = INITIAL_STATE, action) {
+export function accountListReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
 		case SUCCESS:
+			console.log('### accountListReducer SUCCESS ');
 			return {
 				...state,
 				error: '',
-				isSuccess: true
+				isSuccess: true,
+				accountList: action.accountList
 			};
 		case FAILED:
+		console.log('### accountListReducer FAILED ');
 			return {
 				...state,
 				error: action.error,
-				isSuccess: false
+				isSuccess: false,
+				accountList: []
 			};
 		default:
 			return state;
@@ -57,17 +63,17 @@ export function signUpReducer(state = INITIAL_STATE, action) {
 //=============================//
 //4: Load Data
 //=============================//
-export function signUp(userCredentials) {
+export function getList(userCredentials) {
   return (dispatch, getState) => {
 		dispatch(showLoading());
-    return AuthenticationService.signup(userCredentials)
+    return UserService.getList(userCredentials)
     .then(json => {
 				dispatch(hideLoading());
-        dispatch(signUpRequestSuccess());
+        dispatch(accountSummaryRequestSuccess(json));
     })
     .catch(error => {
 			dispatch(hideLoading());
-      dispatch(signUpRequestFailed(error))
+      dispatch(accountSummaryRequestFailed(error))
     });
   };
 }

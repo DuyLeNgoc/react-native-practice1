@@ -11,8 +11,8 @@ import {
 	INITIAL_STATE,
 	signInReducer,
 	loginRequest,
-	loginRequestSuccess,
-	loginRequestFailed,
+	signInRequestSuccess,
+	signInRequestFailed,
 	REQUEST,
 	SUCCESS,
 	FAILED
@@ -31,14 +31,14 @@ const MOCK_ERROR = {message: 'testing failed'}
 describe('SignIn Action Creators ', () => {
 	it('creates a SUCCESS action', () => {
 	  // You do it
-	  expect(loginRequestSuccess(MOCK_USERINFO)).toEqual(
+	  expect(signInRequestSuccess(MOCK_USERINFO)).toEqual(
 	    {
 				type: SUCCESS,
 				payload: MOCK_USERINFO
 	    }
 	  );
 	  // Jest does it
-	  expect(loginRequestSuccess(MOCK_USERINFO)).toMatchSnapshot();
+	  expect(signInRequestSuccess(MOCK_USERINFO)).toMatchSnapshot();
 	});
 
 	it('creates a REQUEST action', () => {
@@ -54,14 +54,14 @@ describe('SignIn Action Creators ', () => {
 
 	it('creates a FAILED action', () => {
 	  // You do it
-	  expect(loginRequestFailed(MOCK_ERROR)).toEqual(
+	  expect(signInRequestFailed(MOCK_ERROR)).toEqual(
 	    {
 				type: FAILED,
 				error: MOCK_ERROR.message
 	    }
 	  );
 	  // Jest does it
-	  expect(loginRequestFailed(MOCK_ERROR)).toMatchSnapshot();
+	  expect(signInRequestFailed(MOCK_ERROR)).toMatchSnapshot();
 	});
 });
 

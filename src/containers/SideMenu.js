@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
-import { logout } from 'redux/signin';
+import { handleLogout } from 'config/routes';
 import Metrics from 'config/metrics';
 import AppBackground from 'components/shared/AppBackground';
 import images from 'config/images';
@@ -29,17 +29,6 @@ export default class SideMenu extends Component {
     Actions.AccountSummary();
   }
 
-	handleLogout = () => {
-		Alert.alert(
-		      'Log out',
-		      'Are you sure?',
-		      [
-		        {text: 'cancel', onPress: () => console.log('Cancel logout'), style: 'cancel'},
-		        {text: 'ok', onPress: () => logout()},
-		      ]
-		    )
-	}
-
 	getMenuItemsLoggedIn() {
 		return (
 			<AppBackground>
@@ -54,7 +43,7 @@ export default class SideMenu extends Component {
 					onPress={this.handleShowAccountSummary}/>
         <DrawerButton
 					text={'Logout'}
-					onPress={this.handleLogout}/>
+					onPress={handleLogout}/>
 				<DrawerButton
 					text={'About'}
 					onPress={this.handleShowAbout}/>

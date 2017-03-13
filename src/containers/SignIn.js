@@ -118,7 +118,7 @@ export class SignIn extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if(this.props.user) {
-      Actions.AccountSummary();
+      Actions.AccountSummary({user: this.props.user});
     }
   }
 

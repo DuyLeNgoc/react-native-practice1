@@ -6,8 +6,8 @@ import {
 	INITIAL_STATE as initialSignInState,
 	signInReducer,
 	loginRequest,
-	loginRequestSuccess,
-	loginRequestFailed,
+	signInRequestSuccess,
+	signInRequestFailed,
 	SUCCESS,
 	FAILED,
 	login
@@ -55,10 +55,10 @@ describe('SignIn Action', () => {
     return store.dispatch(login({}))
 		.then(() => {
 				const receivedActions = store.getActions();
-        serviceCall.restore();
         sinon.assert.calledOnce(serviceCall);
 	      expect(receivedActions.length).toBe(4);
 				expect(receivedActions).toEqual(expectedActions)
+				serviceCall.restore();
     })
   });
 
@@ -81,10 +81,10 @@ describe('SignIn Action', () => {
     return store.dispatch(login({}))
 		.then(() => {
 				const receivedActions = store.getActions();
-        serviceCall.restore();
         sinon.assert.calledOnce(serviceCall);
 	      expect(receivedActions.length).toBe(3);
 				expect(receivedActions).toEqual(expectedActions)
+				serviceCall.restore();
     })
   });
 });
