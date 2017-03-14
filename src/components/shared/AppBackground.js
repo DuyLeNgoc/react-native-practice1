@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Image } from 'react-native';
 
-import applicationStyles from 'config/applicationStyle';
+import Themes from 'theme/index';
 import images from 'config/images';
 
 export default class AppBackground extends Component {
@@ -9,7 +9,7 @@ export default class AppBackground extends Component {
     return (
       <Image
           source={this.props.imageLink ? this.props.imageLink : images.background.default}
-          style={ applicationStyles.splashScreen }>
+          style={ Themes.ApplicationStyles.splashScreen }>
         {this.props.children}
       </Image>
     );

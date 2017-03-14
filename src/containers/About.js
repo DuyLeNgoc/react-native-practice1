@@ -9,8 +9,7 @@ import {
 } from 'react-native';
 
 import AppBackground from 'components/shared/AppBackground';
-import Colors from 'config/colors';
-import Metrics from 'config/metrics';
+import Themes from 'theme/index';
 
 export default class About extends Component {
   constructor(props) {
@@ -34,17 +33,17 @@ export default class About extends Component {
   render() {
     return (
       <AppBackground>
-        <View style={{flex: 1, paddingTop: Metrics.navBarHeight, paddingLeft: 10, paddingRight: 10}}>
-          <Text style={[styles.textColor, {fontSize: 26}]}>
+        <View style={styles.container}>
+          <Text style={[styles.textColor, {fontSize: Themes.Fonts.size.large}]}>
             Practice React Native
           </Text>
-          <Text style={[styles.textColor, {fontSize: 23}]}>
+          <Text style={[styles.textColor, {fontSize: Themes.Fonts.size.large}]}>
             Implement features as below
           </Text>
           <ListView
-            style={{backgroundColor: Colors.transparent}}
+            style={styles.list}
             dataSource={this.state.dataSource}
-            renderRow={(rowData) => <Text style={[styles.textColor, {fontSize: 20}]}>- {rowData}</Text>}
+            renderRow={(rowData) => <Text style={[styles.textColor, {fontSize: Themes.Fonts.size.medium}]}>- {rowData}</Text>}
           />
         </View>
       </AppBackground>
@@ -55,9 +54,15 @@ export default class About extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: Themes.Metrics.navBarHeight,
+    paddingLeft: Themes.Metrics.paddingHorizontal,
+    paddingRight: Themes.Metrics.paddingHorizontal
+  },
+  list: {
+    backgroundColor: Themes.Colors.transparent
   },
   textColor: {
-    color: Colors.white,
-    backgroundColor: Colors.transparent
+    color: Themes.Colors.white,
+    backgroundColor: Themes.Colors.transparent
   }
 });

@@ -8,9 +8,8 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import Metrics from 'config/metrics';
 import images from 'config/images';
-import Colors from 'config/colors';
+import Themes from 'theme/index';
 
 import AppBackground from 'components/shared/AppBackground';
 import CustomTextInput from 'components/CustomTextInput/CustomTextInput';
@@ -75,9 +74,9 @@ const styles = StyleSheet.create({
   textTitle: {
     fontSize: 30,
     height: 60,
-    color: Colors.white,
-    backgroundColor: Colors.transparent,
-    marginTop: Metrics.marginNavigationBar,
-    marginLeft: Metrics.marginHorizontal*2
+    color: Themes.Colors.white,
+    backgroundColor: Themes.Colors.transparent,
+    marginTop: Themes.Metrics.marginNavigationBar,
+    marginLeft: Themes.Metrics.marginHorizontal*2
   }
 });

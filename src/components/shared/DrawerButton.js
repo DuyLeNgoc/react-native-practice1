@@ -8,8 +8,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-import Metrics from 'config/metrics';
-import Colors from 'config/colors';
+import Themes from 'theme/index';
 
 export default class DrawerButton extends Component {
   render() {
@@ -29,8 +28,8 @@ DrawerButton.propTypes = {
 
 const styles = StyleSheet.create({
   item: {
-    margin: Metrics.margin,
-    color: Colors.white,
-    backgroundColor: Colors.transparent
+    margin: Themes.Metrics.margin,
+    color: Themes.Colors.white,
+    backgroundColor: Themes.Colors.transparent
   }
 });

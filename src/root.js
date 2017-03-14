@@ -8,7 +8,7 @@ import {
 import { Provider } from 'react-redux';
 
 import store from 'config/store';
-import applicationStyles from 'config/applicationStyle';
+import Themes from 'theme/index';
 import images from 'config/images';
 import scenes from 'config/routes';
 
@@ -18,10 +18,10 @@ export default class Root extends Component {
       <Provider store={store}>
         <Router
           scenes={scenes}
-          titleStyle={applicationStyles.titleStyle} backButtonImage={images.navigationIcons.back}
-          navigationBarStyle={applicationStyles.navigationBarStyle}
-          leftButtonIconStyle={applicationStyles.navigationItemIcon}
-          rightButtonIconStyle={applicationStyles.navigationItemIcon}
+          titleStyle={Themes.ApplicationStyles.titleStyle} backButtonImage={images.navigationIcons.back}
+          navigationBarStyle={Themes.ApplicationStyles.navigationBarStyle}
+          leftButtonIconStyle={Themes.ApplicationStyles.navigationItemIcon}
+          rightButtonIconStyle={Themes.ApplicationStyles.navigationItemIcon}
           drawerImage={images.navigationIcons.hamburger}
         />
     </Provider>

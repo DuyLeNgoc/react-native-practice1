@@ -16,7 +16,7 @@ import { connect } from 'react-redux';
 
 import { getList } from 'redux/account-summary';
 import images from 'config/images';
-import Themes from 'config/index';
+import Themes from 'theme';
 import AppBackground from 'components/shared/AppBackground';
 import AccountItem from 'components/account-summary/AccountItem';
 import Constants from 'utils/constants';

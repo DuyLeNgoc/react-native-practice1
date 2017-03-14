@@ -9,9 +9,8 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import Metrics from 'config/metrics';
+import Themes from 'theme/index';
 import images from 'config/images';
-import Colors from 'config/colors';
 
 export default class AccountItem extends Component {
 	renderItem() {
@@ -59,40 +58,40 @@ AccountItem.propTypes = {
   item: PropTypes.object.isRequired
 };
 
-var imageWidth = Metrics.images.large;
-var imageHeight = Metrics.images.large;
+var imageWidth = Themes.Metrics.images.large;
+var imageHeight = Themes.Metrics.images.large;
 const styles = StyleSheet.create({
 	container: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'flex-start',
-    backgroundColor: Colors.white,
-    borderBottomColor: Colors.lightGrey,
+    backgroundColor: Themes.Colors.white,
+    borderBottomColor: Themes.Colors.lightGrey,
     borderBottomWidth: 1,
-    padding: 2 * Metrics.margin
+    padding: 2 * Themes.Metrics.margin
   },
   subContainer: {
-    width: Metrics.screenWidth - imageWidth - 2 * Metrics.margin,
+    width: Themes.Metrics.screenWidth - imageWidth - 2 * Themes.Metrics.margin,
     flexWrap: 'wrap',
-    backgroundColor: Colors.transparent,
+    backgroundColor: Themes.Colors.transparent,
     alignItems: 'flex-start',
     justifyContent: 'space-between',
-		padding: Metrics.margin
+		padding: Themes.Metrics.margin
   },
   name: {
-    color: Colors.black,
+    color: Themes.Colors.black,
     fontSize: 20
   },
 	email: {
-    color: Colors.black,
+    color: Themes.Colors.black,
     fontSize: 13
   },
   avatar: {
-    width: Metrics.images.large,
-    height: Metrics.images.large,
-		borderRadius: Metrics.images.large/2,
-		borderColor: Colors.radicalRed,
+    width: imageWidth,
+    height: imageHeight,
+		borderRadius: imageHeight/2,
+		borderColor: Themes.Colors.radicalRed,
 		borderWidth: 1
   }
 });

@@ -21,8 +21,7 @@ import { connect } from 'react-redux';
 
 import MemCache from 'utils/MemCache';
 import { signIn } from 'redux/signin';
-import applicationStyles from 'config/applicationStyle';
-import Themes from 'config/index';
+import Themes from 'theme/index';
 import images from 'config/images';
 
 import AppBackground from 'components/shared/AppBackground';
@@ -74,12 +73,12 @@ export class SignIn extends Component {
   render() {
     return (
       <AppBackground imageLink={images.background.signin}>
-        <View style={applicationStyles.halfHeight}>
+        <View style={Themes.ApplicationStyles.halfHeight}>
           <CircleImageView
             height={120}
             imagelink={images.icons.redChecked}/>
         </View>
-        <KeyboardAvoidingView behavior={'padding'} style={applicationStyles.quarterHeight}>
+        <KeyboardAvoidingView behavior={'padding'} style={Themes.ApplicationStyles.quarterHeight}>
           <CustomTextInput
             autoCapitalize={'none'}
             onChangeText={(text) => this.setState({username: text})}
@@ -99,7 +98,7 @@ export class SignIn extends Component {
               </Text>
           </TouchableOpacity>
         </KeyboardAvoidingView>
-        <View style={[applicationStyles.quarterHeight, {justifyContent: 'flex-end'}]}>
+        <View style={[Themes.ApplicationStyles.quarterHeight, {justifyContent: 'flex-end'}]}>
           <Text style={styles.errorText}>
             {this.props.error}
           </Text>

@@ -1,4 +1,4 @@
-import Colors from 'config/colors';
+import Colors from 'theme/colors';
 
 const type = {
   base: 'Roboto-Regular',

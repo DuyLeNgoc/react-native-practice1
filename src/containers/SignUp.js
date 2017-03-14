@@ -19,10 +19,8 @@ import { Actions } from 'react-native-router-flux';
 
 import { signUp } from 'redux/signup';
 
-import applicationStyles from 'config/applicationStyle';
-import Metrics from 'config/metrics';
+import Themes from 'theme';
 import images from 'config/images';
-import Colors from 'config/colors';
 
 import AppBackground from 'components/shared/AppBackground';
 import CustomTextInput from 'components/CustomTextInput/CustomTextInput';
@@ -89,7 +87,7 @@ class SignUp extends Component {
   render() {
     return (
       <AppBackground imageLink={images.background.signup}>
-        <View style={applicationStyles.threeQuarterHeight}>
+        <View style={Themes.ApplicationStyles.threeQuarterHeight}>
           <ScrollView>
             <Text style={styles.textTitle}>
               Sign Up
@@ -122,7 +120,7 @@ class SignUp extends Component {
             </KeyboardAvoidingView>
           </ScrollView>
         </View>
-        <View style={[applicationStyles.quarterHeight, {justifyContent: 'flex-end'}]}>
+        <View style={[Themes.ApplicationStyles.quarterHeight, {justifyContent: 'flex-end'}]}>
           <Text style={styles.errorText}>
             {this.props.error}
           </Text>
@@ -186,10 +184,10 @@ const styles = StyleSheet.create({
   textTitle: {
     fontSize: 30,
     height: 60,
-    color: Colors.white,
-    backgroundColor: Colors.transparent,
-    marginTop: Metrics.marginNavigationBar,
-    marginLeft: Metrics.marginHorizontal*2
+    color: Themes.Colors.white,
+    backgroundColor: Themes.Colors.transparent,
+    marginTop: Themes.Metrics.marginNavigationBar,
+    marginLeft: Themes.Metrics.marginHorizontal*2
   },
   signupWrap: {
     height: 60,
@@ -200,7 +198,7 @@ const styles = StyleSheet.create({
   signupLinkText: {
     color: "white",
     marginLeft: 5,
-    backgroundColor: Colors.transparent
+    backgroundColor: Themes.Colors.transparent
   },
   errorText: {
     color: 'red',
@@ -210,11 +208,11 @@ const styles = StyleSheet.create({
   },
   accountText: {
     color: "#D8D8D8",
-    backgroundColor: Colors.transparent
+    backgroundColor: Themes.Colors.transparent
   },
   actionButton: {
     height: 60,
-    backgroundColor: Colors.radicalRed,
+    backgroundColor: Themes.Colors.radicalRed,
     alignItems: "center",
     justifyContent: "center"
   },

@@ -6,9 +6,7 @@ import {
   Image
 } from 'react-native';
 
-import Metrics from 'config/metrics';
-import Colors from 'config/colors';
-import Fonts from 'config/fonts';
+import Themes from 'theme/index';
 
 export default class DrawerHeader extends Component {
   render() {
@@ -32,17 +30,17 @@ DrawerHeader.propTypes = {
 
 const styles = StyleSheet.create({
   header: {
-    padding: Metrics.padding,
-    backgroundColor: Colors.radicalRed,
+    padding: Themes.Metrics.padding,
+    backgroundColor: Themes.Colors.radicalRed,
     flexDirection: 'row',
     alignItems: 'flex-end'
   },
   item: {
-    marginLeft: Metrics.marginHorizontal,
-    color: Colors.white
+    marginLeft: Themes.Metrics.marginHorizontal,
+    color: Themes.Colors.white
   },
   headerImage: {
-    width: Metrics.images.small,
-    height: Metrics.images.small
+    width: Themes.Metrics.images.small,
+    height: Themes.Metrics.images.small
   }
 });

@@ -9,9 +9,7 @@ import {
   Platform
 } from 'react-native';
 
-import applicationStyles from 'config/applicationStyle';
-import Metrics from 'config/metrics';
-import Colors from 'config/colors';
+import Themes from 'theme';
 
 export default class CustomTextInput extends Component {
   render() {
@@ -20,13 +18,13 @@ export default class CustomTextInput extends Component {
         <View style={styles.iconWrap}>
           <Image
             source={this.props.imageIcon}
-            style={applicationStyles.iconInputField} />
+            style={Themes.ApplicationStyles.iconInputField} />
         </View>
         <TextInput
           {...this.props}
-          style={applicationStyles.inputField}
-          underlineColorAndroid={Colors.transparent}
-          placeholderTextColor={this.props.placeholderTextColor ? this.props.placeholderTextColor: Colors.Alto}
+          style={Themes.ApplicationStyles.inputField}
+          underlineColorAndroid={Themes.Colors.transparent}
+          placeholderTextColor={this.props.placeholderTextColor ? this.props.placeholderTextColor: Themes.Colors.Alto}
         />
       </View>
     );
@@ -39,8 +37,8 @@ CustomTextInput.propTypes = {
 
 const styles = StyleSheet.create({
   inputWrap: {
-    paddingLeft: Metrics.paddingLeft,
-    height: Metrics.inputFieldHeight,
+    paddingLeft: Themes.Metrics.paddingHorizontal,
+    height: Themes.Metrics.inputFieldHeight,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
@@ -48,8 +46,7 @@ const styles = StyleSheet.create({
     borderBottomColor: "#CCC",
   },
   iconWrap: {
-    padding: Metrics.padding,
-    marginLeft: 2*Metrics.marginHorizontal,
-    // backgroundColor: 'red'
+    padding: Themes.Metrics.padding,
+    marginLeft: 2*Themes.Metrics.marginHorizontal
   }
 });

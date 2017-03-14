@@ -8,7 +8,7 @@ import { Actions } from 'react-native-router-flux';
 
 import MemCache from 'utils/MemCache';
 import { handleLogout } from 'config/routes';
-import Metrics from 'config/metrics';
+import Themes from 'theme';
 import AppBackground from 'components/shared/AppBackground';
 import images from 'config/images';
 import DrawerButton from 'components/shared/DrawerButton';
@@ -55,7 +55,7 @@ export default class SideMenu extends Component {
 	getMenuItemsNotLoggedIn() {
 		return (
 			<AppBackground>
-				<View style={{marginTop: Metrics.titleBarHeight}}>
+				<View style={{marginTop: Themes.Metrics.titleBarHeight}}>
 					<DrawerHeader
 						image={images.icons.userName}
 						text={'User Function'}/>
