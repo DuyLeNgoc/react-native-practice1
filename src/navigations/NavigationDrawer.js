@@ -20,7 +20,7 @@ class NavigationDrawer extends Component {
 	render(){
     const state = this.props.navigationState;
     const children = state.children;
-		const content = <SideMenu closeDrawer={this.closeDrawer} {...this.props} />;
+		const content = <SideMenu closeDrawer={this.closeDrawer} />;
     return (
         <Drawer
             ref="navigation"

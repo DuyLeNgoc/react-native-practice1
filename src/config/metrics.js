@@ -39,7 +39,9 @@ const Metrics = {
     large: 60,
     logo: 300
   },
-  opacity: 0.3
+  opacity: 0.3,
+  //ListView
+  headerSectionHeight: 60
 };
 
 export default Metrics;

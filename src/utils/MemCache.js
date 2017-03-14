@@ -1,3 +1,4 @@
+import Constants from 'utils/constants';
 var data = {};
 
 /**
@@ -5,7 +6,10 @@ var data = {};
  * @type {{set: Function, get: Function}}
  */
 var MemCache = {
-  sessionId: '',
+  isLogged() {
+    const accessToken = Constants.memcacheKeys.accessToken;
+    return data.hasOwnProperty(accessToken);
+  },
   set(key, value){
     data[key] = value;
   },

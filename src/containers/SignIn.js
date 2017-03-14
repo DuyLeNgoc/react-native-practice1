@@ -19,9 +19,10 @@ import {
 } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 
+import MemCache from 'utils/MemCache';
 import { signIn } from 'redux/signin';
 import applicationStyles from 'config/applicationStyle';
-import Colors from 'config/colors';
+import Themes from 'config/index';
 import images from 'config/images';
 
 import AppBackground from 'components/shared/AppBackground';
@@ -118,13 +119,18 @@ export class SignIn extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if(this.props.user) {
-      Actions.AccountSummary({user: this.props.user});
+      if (MemCache.isLogged()) {
+        Actions.AccountSummary({user: this.props.user});
+      }
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.username) {
       this.setState({username: nextProps.username})
+    }
+    if (!nextProps.isLogged) {
+      console.log('### User was logged');
     }
   }
 
@@ -151,7 +157,7 @@ function mapStateToProps(state) {
   return {
     error: state.signInReducer.error,
     loading: state.loadingInfo.loading,
-    user: state.signInReducer.user
+    user: state.userSession
   }
 }
 
@@ -169,15 +175,15 @@ export default connect(
 
 var styles = StyleSheet.create({
   forgotPasswordText: {
-    color: Colors.Alto,
-    backgroundColor: Colors.transparent,
+    color: Themes.Colors.Alto,
+    backgroundColor: Themes.Colors.transparent,
     textAlign: 'right',
     paddingRight: 15,
     paddingTop: 10
   },
   signinButton: {
     height: 60,
-    backgroundColor: Colors.radicalRed,
+    backgroundColor: Themes.Colors.radicalRed,
     alignItems: "center",
     justifyContent: "center"
   },
@@ -193,16 +199,16 @@ var styles = StyleSheet.create({
   },
   accountText: {
     color: "#D8D8D8",
-    backgroundColor: Colors.transparent
+    backgroundColor: Themes.Colors.transparent
   },
   signupLinkText: {
     color: "white",
     marginLeft: 5,
-    backgroundColor: Colors.transparent
+    backgroundColor: Themes.Colors.transparent
   },
   errorText: {
     color: 'red',
-    backgroundColor: 'transparent',
+    backgroundColor: Themes.Colors.transparent,
     textAlign: 'center',
     lineHeight: 20
   }

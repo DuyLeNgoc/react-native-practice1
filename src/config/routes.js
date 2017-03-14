@@ -1,5 +1,4 @@
 import React from 'react';
-import { Alert } from 'react-native';
 import {
   Actions,
   Scene,
@@ -28,19 +27,13 @@ export const handleLogout = () => {
       )
 }
 
-const signOut = () => {
+function signOut() {
   return AuthenticationService.signout()
 	.then(json => {
-    Actions.SignIn();
+    Actions.SignIn({refresh: {isLogged: false}});
   })
 	.catch(error => {
-    Alert.alert(
-      'Log out'
-      `Logout Failed: ${error.message}`,
-      [
-        {text: 'OK'},
-      ]
-    )
+    console.log(`Logout Failed: ${error.message}`);
   });
 }
 
@@ -56,7 +49,7 @@ export default scenes = Actions.create(
             component={SignIn}
             initial={true}
             hideNavBar={false}
-            type={ActionConst.RESET} />
+            type={ActionConst.REPLACE} />
           <Scene
             key="SignUp"
             component={SignUp}

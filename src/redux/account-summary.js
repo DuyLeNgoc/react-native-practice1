@@ -63,10 +63,10 @@ export function accountListReducer(state = INITIAL_STATE, action) {
 //=============================//
 //4: Load Data
 //=============================//
-export function getList(userCredentials) {
+export function getList() {
   return (dispatch, getState) => {
 		dispatch(showLoading());
-    return UserService.getList(userCredentials)
+    return UserService.getList()
     .then(json => {
 				dispatch(hideLoading());
         dispatch(accountSummaryRequestSuccess(json));

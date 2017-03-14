@@ -17,7 +17,10 @@ export default class AuthenticationService {
   }
 
   static signout() {
-    return Api.requestData('POST', 'trainees/logout')
+    const accessToken = Constants.memcacheKeys.accessToken;
+    let userCredentials = {};
+    userCredentials[accessToken] = MemCache.get(accessToken);
+    return Api.requestData('POST', 'trainees/logout', userCredentials)
     .then(json => {
       MemCache.remove(Constants.memcacheKeys.accessToken);
     });

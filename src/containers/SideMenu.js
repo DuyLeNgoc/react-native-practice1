@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
+import MemCache from 'utils/MemCache';
 import { handleLogout } from 'config/routes';
 import Metrics from 'config/metrics';
 import AppBackground from 'components/shared/AppBackground';
@@ -67,8 +68,7 @@ export default class SideMenu extends Component {
 	}
 
   render() {
-    console.log('### SideMenu is rendering' + this.props.user);
-		if (this.props.user) {
+		if (MemCache.isLogged()) {
 			return this.getMenuItemsLoggedIn();
 		}
     return this.getMenuItemsNotLoggedIn();
@@ -76,6 +76,5 @@ export default class SideMenu extends Component {
 }
 
 SideMenu.propTypes = {
-  user: PropTypes.object,
 	closeDrawer: PropTypes.func.isRequired
 };
