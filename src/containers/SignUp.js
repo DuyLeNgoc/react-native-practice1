@@ -1,9 +1,4 @@
 /* @flow */
-// export const a = 2;
-// export const b = 3;
-// const c = 4;
-// export default c;
-
 import React, { Component, PropTypes } from 'react';
 import {
   View,
@@ -23,7 +18,8 @@ import Themes from 'theme';
 import images from 'config/images';
 
 import AppBackground from 'components/shared/AppBackground';
-import CustomTextInput from 'components/CustomTextInput/CustomTextInput';
+import CustomTextInput from 'components/shared/CustomTextInput';
+import ActionLink from 'components/shared/ActionLink';
 
 class SignUp extends Component {
   constructor(props) {
@@ -125,18 +121,11 @@ class SignUp extends Component {
             {this.props.error}
           </Text>
           {this.checkToRenderLoading()}
-          <View style={styles.signupWrap}>
-            <Text style={styles.accountText}>
-              Already have an account?
-            </Text>
-            <TouchableOpacity
-              activeOpacity={.5}
-              onPress={this.handleSignIn}>
-              <Text style={styles.signupLinkText}>
-              Sign In
-              </Text>
-            </TouchableOpacity>
-          </View>
+          <ActionLink
+            questionText={'Already have an account?'}
+            actionText={'Sign In'}
+            handleAction={this.handleSignIn}
+           />
         </View>
       </AppBackground>
     );
@@ -189,26 +178,11 @@ const styles = StyleSheet.create({
     marginTop: Themes.Metrics.marginNavigationBar,
     marginLeft: Themes.Metrics.marginHorizontal*2
   },
-  signupWrap: {
-    height: 60,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  signupLinkText: {
-    color: "white",
-    marginLeft: 5,
-    backgroundColor: Themes.Colors.transparent
-  },
   errorText: {
     color: 'red',
     backgroundColor: 'transparent',
     textAlign: 'center',
     lineHeight: 20
-  },
-  accountText: {
-    color: "#D8D8D8",
-    backgroundColor: Themes.Colors.transparent
   },
   actionButton: {
     height: 60,

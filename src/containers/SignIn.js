@@ -21,12 +21,13 @@ import { connect } from 'react-redux';
 
 import MemCache from 'utils/MemCache';
 import { signIn } from 'redux/signin';
-import Themes from 'theme/index';
+import Themes from 'theme';
 import images from 'config/images';
 
 import AppBackground from 'components/shared/AppBackground';
-import CircleImageView from 'components/CircleImageView/CircleImageView';
-import CustomTextInput from 'components/CustomTextInput/CustomTextInput';
+import CircleImageView from 'components/shared/CircleImageView';
+import CustomTextInput from 'components/shared/CustomTextInput';
+import ActionLink from 'components/shared/ActionLink';
 
 export class SignIn extends Component {
   constructor(props) {
@@ -103,14 +104,11 @@ export class SignIn extends Component {
             {this.props.error}
           </Text>
           {this.checkToRenderLoading()}
-          <View style={styles.signupWrap}>
-            <Text style={styles.accountText}>Don't have an account?</Text>
-            <TouchableOpacity activeOpacity={.5} onPress={this.handleSignUp}>
-              <Text style={styles.signupLinkText}>
-              Sign Up
-              </Text>
-            </TouchableOpacity>
-          </View>
+          <ActionLink
+            questionText={"Don't have an account?"}
+            actionText={'Sign Up'}
+            handleAction={this.handleSignUp}
+           />
         </View>
       </AppBackground>
     );
@@ -189,21 +187,6 @@ var styles = StyleSheet.create({
   signinText: {
     color: "#FFF",
     fontSize: 18
-  },
-  signupWrap: {
-    height: 60,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  accountText: {
-    color: "#D8D8D8",
-    backgroundColor: Themes.Colors.transparent
-  },
-  signupLinkText: {
-    color: "white",
-    marginLeft: 5,
-    backgroundColor: Themes.Colors.transparent
   },
   errorText: {
     color: 'red',

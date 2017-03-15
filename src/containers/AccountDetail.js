@@ -12,7 +12,7 @@ import images from 'config/images';
 import Themes from 'theme/index';
 
 import AppBackground from 'components/shared/AppBackground';
-import CustomTextInput from 'components/CustomTextInput/CustomTextInput';
+import CustomTextInput from 'components/shared/CustomTextInput';
 
 export default class AccountDetail extends Component {
   render() {

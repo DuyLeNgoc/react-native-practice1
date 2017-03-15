@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import CircleImageView from 'components/CircleImageView/CircleImageView';
+import CircleImageView from 'components/shared/CircleImageView';
 
 it('renders correctly', () => {
   const tree = renderer.create(

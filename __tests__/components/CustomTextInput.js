@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import CustomTextInput from 'components/CustomTextInput/CustomTextInput';
+import CustomTextInput from 'components/shared/CustomTextInput';
 
 it('renders correctly', () => {
   const tree = renderer.create(
