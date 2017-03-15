@@ -73,7 +73,6 @@ const styles = StyleSheet.create({
   },
   subContainer: {
     width: Themes.Metrics.screenWidth - imageWidth - 2 * Themes.Metrics.margin,
-    flexWrap: 'wrap',
     backgroundColor: Themes.Colors.transparent,
     alignItems: 'flex-start',
     justifyContent: 'space-between',
@@ -89,7 +88,7 @@ const styles = StyleSheet.create({
   },
   avatar: {
     width: imageWidth,
-    height: imageHeight,
+    aspectRatio: 1,
 		borderRadius: imageHeight/2,
 		borderColor: Themes.Colors.radicalRed,
 		borderWidth: 1

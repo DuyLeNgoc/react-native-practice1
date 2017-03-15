@@ -17,7 +17,7 @@ import DrawerHeader from 'components/shared/DrawerHeader';
 export default class SideMenu extends Component {
   handleShowProfile = () => {
     this.props.closeDrawer();
-    Actions.Profile();
+    Actions.Profile({user: this.props.user});
   }
 
   handleShowAbout = () => {
@@ -30,24 +30,31 @@ export default class SideMenu extends Component {
     Actions.AccountSummary();
   }
 
+  handleShowSignIn = () => {
+    this.props.closeDrawer();
+    Actions.SignIn();
+  }
+
 	getMenuItemsLoggedIn() {
 		return (
 			<AppBackground>
-				<DrawerHeader
-					image={images.icons.userName}
-					text={'User Function'}/>
-				<DrawerButton
-					text={'My Profile'}
-					onPress={this.handleShowProfile}/>
-				<DrawerButton
-					text={'AccountSummary'}
-					onPress={this.handleShowAccountSummary}/>
-        <DrawerButton
-					text={'Logout'}
-					onPress={handleLogout}/>
-				<DrawerButton
-					text={'About'}
-					onPress={this.handleShowAbout}/>
+        <View style={{marginTop: Themes.Metrics.titleBarHeight}}>
+  				<DrawerHeader
+  					image={images.icons.userName}
+  					text={'User Function'}/>
+  				<DrawerButton
+  					text={'My Profile'}
+  					onPress={this.handleShowProfile}/>
+  				<DrawerButton
+  					text={'AccountSummary'}
+  					onPress={this.handleShowAccountSummary}/>
+          <DrawerButton
+  					text={'Logout'}
+  					onPress={handleLogout}/>
+  				<DrawerButton
+  					text={'About'}
+  					onPress={this.handleShowAbout}/>
+        </View>
 			</AppBackground>
 		);
 	}
@@ -59,6 +66,9 @@ export default class SideMenu extends Component {
 					<DrawerHeader
 						image={images.icons.userName}
 						text={'User Function'}/>
+          <DrawerButton
+						text={'SignIn'}
+						onPress={this.handleShowSignIn}/>
 					<DrawerButton
 						text={'About'}
 						onPress={this.handleShowAbout}/>
@@ -76,5 +86,6 @@ export default class SideMenu extends Component {
 }
 
 SideMenu.propTypes = {
+  user: PropTypes.object,
 	closeDrawer: PropTypes.func.isRequired
 };

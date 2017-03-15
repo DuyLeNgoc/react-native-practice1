@@ -5,6 +5,7 @@ import {
   View,
   Text,
   Image,
+  ActivityIndicator,
   ListView,
   RefreshControl,
   StyleSheet,
@@ -64,7 +65,6 @@ export class AccountSummary extends Component {
   }
 
   renderSectionHeader = (item, sectionID) => {
-    console.log(item.description);
     return (
       <View style={styles.containerSection}>
         <Text style={styles.headerSection}>
@@ -72,6 +72,32 @@ export class AccountSummary extends Component {
         </Text>
       </View>
     );
+  }
+
+  checkToRenderLoading() {
+    if(this.props.loading) {
+      return (
+        <View style={styles.containerLoading}>
+          <ActivityIndicator
+            style={[styles.loader]}
+            color='white'
+            size='large' />
+        </View>
+      );
+    }
+    return <ListView
+      style={styles.list}
+      enableEmptySections={true}
+      dataSource={this.state.dataSource}
+      renderRow={(item) => <AccountItem item={item} didSelectedItem={this.didSelectedItem} />}
+      renderSectionHeader={this.renderSectionHeader}
+      refreshControl={
+        <RefreshControl
+          refreshing={this.state.refreshing} onRefresh={this.onRefresh}
+          tintColor={Themes.Colors.white}
+          colors={[Themes.Colors.white]}
+        /> }
+    />
   }
 
   render() {
@@ -84,19 +110,7 @@ export class AccountSummary extends Component {
             {this.props.user.full_name}
           </Text>
         </Image>
-        <ListView
-          style={styles.list}
-          enableEmptySections={true}
-          dataSource={this.state.dataSource}
-          renderRow={(item) => <AccountItem item={item} didSelectedItem={this.didSelectedItem} />}
-          renderSectionHeader={this.renderSectionHeader}
-          refreshControl={
-            <RefreshControl
-              refreshing={this.state.refreshing} onRefresh={this.onRefresh}
-              tintColor={Themes.Colors.white}
-              colors={[Themes.Colors.white]}
-            /> }
-        />
+        {this.checkToRenderLoading()}
 			</AppBackground>
     );
   }
@@ -214,5 +228,14 @@ const styles = StyleSheet.create({
     fontSize: Themes.Fonts.size.large,
     color: Themes.Colors.white,
     backgroundColor: Themes.Colors.transparent
+  },
+  containerLoading: {
+    flex: 1,
+    backgroundColor: Themes.Colors.transparent,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  loader: {
+    alignSelf: 'center'
   }
 });

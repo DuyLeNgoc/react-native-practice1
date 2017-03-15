@@ -10,20 +10,20 @@ import SideMenu from 'containers/SideMenu';
 
 class NavigationDrawer extends Component {
 	openDrawer = () => {
-		Actions.refresh({key: 'drawer', open: true});
+		this._drawer.open();
 	}
 
 	closeDrawer = () => {
-		Actions.refresh({key: 'drawer', open: false});
+		this._drawer.close()
 	}
 
 	render(){
     const state = this.props.navigationState;
     const children = state.children;
-		const content = <SideMenu closeDrawer={this.closeDrawer} />;
+		const content = <SideMenu closeDrawer={this.closeDrawer} {...this.props} />;
     return (
         <Drawer
-            ref="navigation"
+            ref={(ref) => this._drawer = ref}
 						type="displace"
             open={state.open}
             onOpen={this.openDrawer}

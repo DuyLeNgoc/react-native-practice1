@@ -210,5 +210,8 @@ var styles = StyleSheet.create({
     backgroundColor: Themes.Colors.transparent,
     textAlign: 'center',
     lineHeight: 20
+  },
+  loader: {
+    alignSelf: 'center'
   }
 });

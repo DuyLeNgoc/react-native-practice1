@@ -8,15 +8,12 @@ import {
 } from 'react-native';
 
 import AppBackground from 'components/shared/AppBackground';
+import AccountDetail from 'containers/AccountDetail';
 
 export default class Profile extends Component {
   render() {
     return (
-      <AppBackground>
-        <View style={styles.container}>
-          <Text>I'm the Profile component</Text>
-        </View>
-      </AppBackground>
+      <AccountDetail {...this.props} />
     );
   }
 }
