@@ -10,10 +10,8 @@ import thunk from 'redux-thunk';
 import {
 	INITIAL_STATE,
 	signInReducer,
-	loginRequest,
 	signInRequestSuccess,
 	signInRequestFailed,
-	REQUEST,
 	SUCCESS,
 	FAILED
 } from 'redux/signin';
@@ -41,17 +39,6 @@ describe('SignIn Action Creators ', () => {
 	  expect(signInRequestSuccess(MOCK_USERINFO)).toMatchSnapshot();
 	});
 
-	it('creates a REQUEST action', () => {
-	  // You do it
-	  expect(loginRequest()).toEqual(
-	    {
-				type: REQUEST
-	    }
-	  );
-	  // Jest does it
-	  expect(loginRequest()).toMatchSnapshot();
-	});
-
 	it('creates a FAILED action', () => {
 	  // You do it
 	  expect(signInRequestFailed(MOCK_ERROR)).toEqual(
@@ -67,18 +54,6 @@ describe('SignIn Action Creators ', () => {
 
 //TESTING Reducer
 describe('SignIn Action Creators ', () => {
-	it('should initiate loading', () => {
-	  const stateAfter = {
-			error: '',
-			loading: true
-	  };
-	  expect(
-	    signInReducer(INITIAL_STATE, {
-	      type: REQUEST
-	    })
-	  ).toEqual(stateAfter);
-	});
-
 	it('should success signin', () => {
 	  const stateAfter = {
 			error: '',

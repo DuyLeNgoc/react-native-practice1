@@ -9,7 +9,7 @@ import { shallowToJson } from 'enzyme-to-json';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { INITIAL_STATE as intialState } from 'redux/signin';
-import { initialSateLoading } from 'redux/sharedData';
+import { initialStateLoading } from 'redux/sharedData';
 
 //ConnectedSignIn: to test its interaction with Redux - wrapper component returned by connect(), not the App component itself
 //SignIn: to test just the rendering of the component
@@ -27,7 +27,7 @@ describe('<SignIn />', () => {
 	});
 
   it('renders with redux', () => {
-    const store = mockStore({ signInReducer: intialState, loadingInfo: initialSateLoading });
+    const store = mockStore({ signInReducer: intialState, loadingInfo: initialStateLoading });
     const wrapper = shallow(
       <ConnectedSignIn store={store} />
     );

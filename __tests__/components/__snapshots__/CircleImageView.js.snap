@@ -6,16 +6,13 @@ exports[`renders correctly 1`] = `
     Array [
       Object {
         "alignItems": "center",
+        "aspectRatio": 1,
         "backgroundColor": "white",
-        "borderRadius": 45,
-        "height": 90,
         "justifyContent": "center",
-        "width": 90,
       },
       Object {
         "borderRadius": 60,
         "height": 120,
-        "width": 120,
       },
     ]
   }
@@ -23,10 +20,14 @@ exports[`renders correctly 1`] = `
   <Image
     source={1}
     style={
-      Object {
-        "height": 40,
-        "width": 40,
-      }
+      Array [
+        Object {
+          "aspectRatio": 1,
+        },
+        Object {
+          "height": 60,
+        },
+      ]
     }
   />
 </View>

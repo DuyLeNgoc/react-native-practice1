@@ -3,13 +3,7 @@
 exports[`SignIn Action Creators  creates a FAILED action 1`] = `
 Object {
   "error": "testing failed",
-  "type": "Failed",
-}
-`;
-
-exports[`SignIn Action Creators  creates a REQUEST action 1`] = `
-Object {
-  "type": "Request",
+  "type": "SignInFailed",
 }
 `;
 
@@ -22,6 +16,6 @@ Object {
     "token": "abcxyzwendsjkfjdsklfjkds",
     "trainee_id": 1,
   },
-  "type": "Success",
+  "type": "SignInSuccess",
 }
 `;

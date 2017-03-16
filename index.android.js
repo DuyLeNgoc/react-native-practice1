@@ -8,6 +8,6 @@ import {
   AppRegistry
 } from 'react-native';
 
-import Root from 'src/root';
+import root from 'src/root';
 
-AppRegistry.registerComponent('Execise1', () => root);
+AppRegistry.registerComponent('Practice1', () => root);

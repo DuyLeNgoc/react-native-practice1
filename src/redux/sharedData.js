@@ -61,12 +61,12 @@ export function clearUser() {
 //      Reducer
 //=============================//
 //reducer for loading
-export const initialSateLoading = {
+export const initialStateLoading = {
 	loading: false,
 	message: ''
 };
 
-export function loadingInfo(state = initialSateLoading, action) {
+export function loadingInfo(state = initialStateLoading, action) {
   switch (action.type) {
     case SHOW_LOADING:
 			return {

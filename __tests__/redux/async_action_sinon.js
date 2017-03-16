@@ -5,16 +5,15 @@ import sinon from 'sinon';
 import {
 	INITIAL_STATE as initialSignInState,
 	signInReducer,
-	loginRequest,
 	signInRequestSuccess,
 	signInRequestFailed,
 	SUCCESS,
 	FAILED,
-	login
+	signIn
 } from 'redux/signin';
 
 import {
-	INITIAL_STATE as initialSharedState,
+	initialStateLoading as initialSharedState,
 	SHOW_LOADING,
 	HIDE_LOADING,
 	SAVE_USER_SESSION
@@ -52,7 +51,7 @@ describe('SignIn Action', () => {
 			signInReducer: initialSignInState,
 			sharedData: initialSharedState });
 
-    return store.dispatch(login({}))
+    return store.dispatch(signIn({}))
 		.then(() => {
 				const receivedActions = store.getActions();
         sinon.assert.calledOnce(serviceCall);
@@ -78,7 +77,7 @@ describe('SignIn Action', () => {
 			signInReducer: initialSignInState,
 			sharedData: initialSharedState });
 
-    return store.dispatch(login({}))
+    return store.dispatch(signIn({}))
 		.then(() => {
 				const receivedActions = store.getActions();
         sinon.assert.calledOnce(serviceCall);

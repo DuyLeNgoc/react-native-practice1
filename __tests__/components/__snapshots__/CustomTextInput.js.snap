@@ -10,7 +10,7 @@ exports[`renders correctly 1`] = `
       "flexDirection": "row",
       "height": 60,
       "justifyContent": "center",
-      "paddingLeft": undefined,
+      "paddingLeft": 10,
     }
   }
 >

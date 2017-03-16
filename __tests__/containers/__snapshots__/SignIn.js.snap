@@ -25,16 +25,13 @@ exports[`<SignIn /> renders correctly 1`] = `
         Array [
           Object {
             "alignItems": "center",
+            "aspectRatio": 1,
             "backgroundColor": "white",
-            "borderRadius": 45,
-            "height": 90,
             "justifyContent": "center",
-            "width": 90,
           },
           Object {
             "borderRadius": 60,
             "height": 120,
-            "width": 120,
           },
         ]
       }
@@ -42,19 +39,30 @@ exports[`<SignIn /> renders correctly 1`] = `
       <Image
         source={1}
         style={
-          Object {
-            "height": 40,
-            "width": 40,
-          }
+          Array [
+            Object {
+              "aspectRatio": 1,
+            },
+            Object {
+              "height": 60,
+            },
+          ]
         }
       />
     </View>
   </View>
   <View
+    keyboardVerticalOffset={0}
+    onLayout={[Function]}
     style={
-      Object {
-        "flex": 0.25,
-      }
+      Array [
+        Object {
+          "flex": 0.25,
+        },
+        Object {
+          "paddingBottom": 0,
+        },
+      ]
     }
   >
     <View
@@ -66,7 +74,7 @@ exports[`<SignIn /> renders correctly 1`] = `
           "flexDirection": "row",
           "height": 60,
           "justifyContent": "center",
-          "paddingLeft": undefined,
+          "paddingLeft": 10,
         }
       }
     >
@@ -116,7 +124,7 @@ exports[`<SignIn /> renders correctly 1`] = `
           "flexDirection": "row",
           "height": 60,
           "justifyContent": "center",
-          "paddingLeft": undefined,
+          "paddingLeft": 10,
         }
       }
     >
@@ -215,13 +223,15 @@ exports[`<SignIn /> renders correctly 1`] = `
       ellipsizeMode="tail"
       style={
         Object {
-          "backgroundColor": "transparent",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
           "color": "red",
           "lineHeight": 20,
           "textAlign": "center",
         }
       }
-    />
+    >
+      
+    </Text>
     <View
       accessibilityComponentType={undefined}
       accessibilityLabel={undefined}
@@ -286,7 +296,9 @@ exports[`<SignIn /> renders correctly 1`] = `
         style={
           Object {
             "backgroundColor": "rgba(0, 0, 0, 0)",
-            "color": "#D8D8D8",
+            "color": "white",
+            "fontSize": 14,
+            "marginLeft": 5,
           }
         }
       >
@@ -321,7 +333,8 @@ exports[`<SignIn /> renders correctly 1`] = `
           style={
             Object {
               "backgroundColor": "rgba(0, 0, 0, 0)",
-              "color": "white",
+              "color": "#D8D8D8",
+              "fontSize": 17,
               "marginLeft": 5,
             }
           }
@@ -338,7 +351,7 @@ exports[`<SignIn /> renders with redux 1`] = `
 <SignIn
   error=""
   loading={false}
-  login={[Function]}
+  signIn={[Function]}
   store={
     Object {
       "clearActions": [Function],
@@ -367,5 +380,7 @@ exports[`<SignIn /> renders with redux 1`] = `
       "unsubscribe": null,
     }
   }
+  user={null}
+  username=""
 />
 `;
